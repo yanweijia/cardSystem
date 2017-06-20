@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="512.0" prefWidth="677.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.SystemAdminController">
+    <children>
+        <Label alignment="CENTER" layoutX="159.0" layoutY="14.0" prefHeight="85.0" prefWidth="360.0" text="系统管理员" textAlignment="CENTER">
+            <font>
+                <Font name="Microsoft YaHei Bold" size="47.0" />
+            </font></Label>
+    </children>
+</AnchorPane>
