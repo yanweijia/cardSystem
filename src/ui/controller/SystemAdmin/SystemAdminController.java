@@ -1,4 +1,4 @@
-package ui.controller;
+package ui.controller.SystemAdmin;
 
 import javafx.fxml.Initializable;
 

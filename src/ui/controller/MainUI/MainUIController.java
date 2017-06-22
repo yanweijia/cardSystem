@@ -1,4 +1,4 @@
-package ui.controller;
+package ui.controller.MainUI;
 
 import dao.UserMapper;
 import db.DBAccess;

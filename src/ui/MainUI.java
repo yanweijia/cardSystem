@@ -22,6 +22,8 @@ public class MainUI extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/MainUI.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root));
+        primaryStage.setResizable(false);
+        primaryStage.setTitle("学校学生管理系统");
         primaryStage.show();
     }
 
