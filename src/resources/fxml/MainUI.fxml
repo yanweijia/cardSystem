@@ -2,6 +2,7 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -25,10 +26,10 @@
          </font></Label>
       <Label layoutX="66.0" layoutY="146.0" text="用户卡号:" />
       <TextField fx:id="textField_cardNo" layoutX="205.0" layoutY="142.0" prefHeight="25.0" prefWidth="197.0" promptText="学号/教职工编号" text="1000" />
-      <Label layoutX="66.0" layoutY="199.0" text="用户密码:" />
-      <PasswordField fx:id="passwordField" layoutX="205.0" layoutY="195.0" prefHeight="25.0" prefWidth="197.0" promptText="输入密码" text="123456" />
-      <Label layoutX="66.0" layoutY="252.0" text="用户类型:" />
-      <ComboBox disable="true" layoutX="205.0" layoutY="248.0" prefHeight="25.0" prefWidth="197.0" promptText="自动识别" />
+      <Label layoutX="66.0" layoutY="182.0" text="用户密码:" />
+      <PasswordField fx:id="passwordField" layoutX="205.0" layoutY="178.0" prefHeight="25.0" prefWidth="197.0" promptText="输入密码" text="123456" />
+      <Label layoutX="66.0" layoutY="218.0" text="用户类型:" />
+      <ComboBox disable="true" layoutX="205.0" layoutY="214.0" prefHeight="25.0" prefWidth="197.0" promptText="自动识别" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="96.0" layoutY="375.0" onMouseClicked="#viewHelp" prefHeight="25.0" prefWidth="71.0" text="查看帮助" textFill="#1a05ff">
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -37,5 +38,6 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Label>
+      <CheckBox layoutX="205.0" layoutY="259.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="197.0" text="仅修改密码/维护个人信息" />
    </children>
 </AnchorPane>

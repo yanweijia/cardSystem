@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="546.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.LibraryAdmin.LibraryAdminController">
+   <top>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="102.0" prefWidth="655.0" text="图书馆管理员" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Microsoft YaHei Bold" size="39.0" />
+         </font>
+      </Label>
+   </top>
+   <center>
+      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab text="图书查询/操作" />
+          <Tab text="新增图书" />
+            <Tab text="手动修改图书信息" />
+            <Tab text="借阅查询/手动还书" />
+        </tabs>
+      </TabPane>
+   </center>
+</BorderPane>
