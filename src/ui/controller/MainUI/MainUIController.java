@@ -56,11 +56,17 @@ public class MainUIController  implements Initializable {
         CurrentUser.password = user.getPassword();
         CurrentUser.type = user.getType();
 
+        //TODO:判断用户是否勾选了维护信息的checkbox
+
+
+
+
         //用户验证通过,跳转到相应角色的界面
         if("系统管理员".equals(user.getType())){
             Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/resources/fxml/SystemAdmin.fxml")));
             Stage stage = new Stage();
             stage.setScene(scene);
+            stage.setTitle("系统管理员");
             stage.show();
             JavaFXHelper.getStage().close();
             return;

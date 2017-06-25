@@ -43,7 +43,7 @@
                                    </rowConstraints>
                                    <children>
                                        <TextField promptText="用户编号" />
-                                       <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" />
+                                       <ChoiceBox fx:id="choicebox_search_usertype" prefWidth="150.0" GridPane.columnIndex="1" />
                                        <TextField promptText="用户姓名" GridPane.columnIndex="2" />
                                        <ChoiceBox prefWidth="150.0" GridPane.rowIndex="1" />
                                        <Button alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" text="查 询" GridPane.columnIndex="2" GridPane.rowIndex="1" />

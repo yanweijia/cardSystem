@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//config.mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.UserMapper">
   <resultMap id="BaseResultMap" type="entity.User">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="type" jdbcType="CHAR" property="type" />
     <result column="available" jdbcType="CHAR" property="available" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="balance" jdbcType="DECIMAL" property="balance" />
+    <result column="organization" jdbcType="INTEGER" property="organization" />
+    <result column="section" jdbcType="INTEGER" property="section" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="addr" jdbcType="VARCHAR" property="addr" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, password, type, available
+    id, password, type, available, name, balance, organization, section, phone, email,
+    addr
   </sql>
   <select id="selectByExample" parameterType="entity.UserExample" resultMap="BaseResultMap">
     select
@@ -91,7 +99,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from user
     where id = #{id,jdbcType=VARCHAR}
@@ -110,10 +118,14 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into user (password, type, available
-      )
-    values (#{password,jdbcType=VARCHAR}, #{type,jdbcType=CHAR}, #{available,jdbcType=CHAR}
-      )
+    insert into user (password, type, available,
+    name, balance, organization,
+    section, phone, email,
+    addr)
+    values (#{password,jdbcType=VARCHAR}, #{type,jdbcType=CHAR}, #{available,jdbcType=CHAR},
+    #{name,jdbcType=VARCHAR}, #{balance,jdbcType=DECIMAL}, #{organization,jdbcType=INTEGER},
+    #{section,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+    #{addr,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="entity.User">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
@@ -130,6 +142,27 @@
       <if test="available != null">
         available,
       </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="organization != null">
+        organization,
+      </if>
+      <if test="section != null">
+        section,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="addr != null">
+        addr,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="password != null">
@@ -140,6 +173,27 @@
       </if>
       <if test="available != null">
         #{available,jdbcType=CHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="organization != null">
+        #{organization,jdbcType=INTEGER},
+      </if>
+      <if test="section != null">
+        #{section,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="addr != null">
+        #{addr,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -164,6 +218,27 @@
       <if test="record.available != null">
         available = #{record.available,jdbcType=CHAR},
       </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.balance != null">
+        balance = #{record.balance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.organization != null">
+        organization = #{record.organization,jdbcType=INTEGER},
+      </if>
+      <if test="record.section != null">
+        section = #{record.section,jdbcType=INTEGER},
+      </if>
+      <if test="record.phone != null">
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addr != null">
+        addr = #{record.addr,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -172,9 +247,16 @@
   <update id="updateByExample" parameterType="map">
     update user
     set id = #{record.id,jdbcType=VARCHAR},
-      password = #{record.password,jdbcType=VARCHAR},
-      type = #{record.type,jdbcType=CHAR},
-      available = #{record.available,jdbcType=CHAR}
+    password = #{record.password,jdbcType=VARCHAR},
+    type = #{record.type,jdbcType=CHAR},
+    available = #{record.available,jdbcType=CHAR},
+    name = #{record.name,jdbcType=VARCHAR},
+    balance = #{record.balance,jdbcType=DECIMAL},
+    organization = #{record.organization,jdbcType=INTEGER},
+    section = #{record.section,jdbcType=INTEGER},
+    phone = #{record.phone,jdbcType=VARCHAR},
+    email = #{record.email,jdbcType=VARCHAR},
+    addr = #{record.addr,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -191,6 +273,27 @@
       <if test="available != null">
         available = #{available,jdbcType=CHAR},
       </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="organization != null">
+        organization = #{organization,jdbcType=INTEGER},
+      </if>
+      <if test="section != null">
+        section = #{section,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="addr != null">
+        addr = #{addr,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
@@ -198,7 +301,14 @@
     update user
     set password = #{password,jdbcType=VARCHAR},
       type = #{type,jdbcType=CHAR},
-      available = #{available,jdbcType=CHAR}
+      available = #{available,jdbcType=CHAR},
+      name = #{name,jdbcType=VARCHAR},
+      balance = #{balance,jdbcType=DECIMAL},
+      organization = #{organization,jdbcType=INTEGER},
+      section = #{section,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      addr = #{addr,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>
