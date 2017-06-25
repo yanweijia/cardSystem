@@ -38,6 +38,6 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Label>
-      <CheckBox layoutX="205.0" layoutY="259.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="197.0" text="仅修改密码/维护个人信息" />
+      <CheckBox fx:id="checkBox_changeInfo" layoutX="205.0" layoutY="259.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="197.0" text="仅修改密码/维护个人信息" />
    </children>
 </AnchorPane>

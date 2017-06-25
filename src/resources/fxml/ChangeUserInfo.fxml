@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane prefHeight="505.0" prefWidth="651.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.ChangeUserInfoController">
    <top>
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="104.0" prefWidth="647.0" text="个人信息维护" textAlignment="CENTER" BorderPane.alignment="CENTER">
@@ -23,6 +22,48 @@
    <center>
       <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
+            <Tab text="个人信息查看">
+               <content>
+                  <GridPane>
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="用户类型" />
+                        <Label text="用户状态" GridPane.rowIndex="1" />
+                        <Label text="姓名:" GridPane.rowIndex="2" />
+                        <Label text="卡余额:" GridPane.rowIndex="3" />
+                        <Label text="所在科室/班级:" GridPane.rowIndex="5" />
+                        <Label text="所在组织机构:" GridPane.rowIndex="4" />
+                        <Label text="电话:" GridPane.rowIndex="6" />
+                        <Label text="邮箱:" GridPane.rowIndex="7" />
+                        <Label text="联系地址:" GridPane.rowIndex="8" />
+                        <Label fx:id="label_info_type" text="学生" GridPane.columnIndex="1" />
+                        <Label fx:id="label_info_available" text="正常" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="label_info_name" text="张三" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="label_info_balance" text="0.00" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="label_info_organization" text="计算机科学与技术学院" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="label_info_section" text="2014055" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label fx:id="label_info_phone" text="18811112222" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="label_info_email" text="admin@test.com" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Label fx:id="label_info_addr" text="上海市浦东新区学海路28号上海电力学院" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <Button defaultButton="true" mnemonicParsing="false" onAction="#refreshUserInfo" text="刷新" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                     </children>
+                  </GridPane>
+               </content></Tab>
           <Tab text="修改密码">
                <content>
                   <GridPane>
@@ -38,13 +79,13 @@
                     </rowConstraints>
                      <children>
                         <Label text="原密码:" />
-                        <TextField GridPane.columnIndex="1" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="textField_oldpw" GridPane.columnIndex="1" />
+                        <TextField fx:id="textField_newpw" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label text="新密码" GridPane.rowIndex="1" />
                         <Label text="再输一次:" GridPane.rowIndex="2" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Button defaultButton="true" mnemonicParsing="false" text="确定修改" GridPane.rowIndex="3" />
-                        <Button cancelButton="true" mnemonicParsing="false" text="重设" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="textField_newpw_again" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Button defaultButton="true" mnemonicParsing="false" onAction="#confirmNewPW" text="确定修改" GridPane.rowIndex="3" />
+                        <Button cancelButton="true" mnemonicParsing="false" onAction="#resetPwField" text="重设" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
                </content>
@@ -63,9 +104,22 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
+                     <children>
+                        <Label text="姓名:" />
+                        <Label text="电话号:" GridPane.rowIndex="1" />
+                        <Label text="邮箱:" GridPane.rowIndex="2" />
+                        <Label text="家庭住址:" GridPane.rowIndex="3" />
+                        <TextField fx:id="textField_name" GridPane.columnIndex="1" />
+                        <TextField fx:id="textField_phone" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="textField_email" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="textField_addr" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Button defaultButton="true" mnemonicParsing="false" onAction="#confirmNewUserInfo" text="确定修改" GridPane.rowIndex="4" />
+                        <Button cancelButton="true" mnemonicParsing="false" onAction="#reloadUserInfo" text="重新读取" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                     </children>
                   </GridPane>
                </content>
             </Tab>
+
         </tabs>
       </TabPane>
    </center>

@@ -12,7 +12,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.apache.ibatis.session.SqlSession;
 import utils.CodeUtils;
-import utils.JavaFXHelper;
+import utils.FXHelper;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,6 +28,11 @@ public class MainUIController  implements Initializable {
     private TextField textField_cardNo;
     @FXML
     private PasswordField passwordField;
+
+    /** checkbox,是否进入维护个人信息界面 */
+    @FXML
+    private CheckBox checkBox_changeInfo;
+
 
     /**
      * 登录
@@ -57,18 +62,18 @@ public class MainUIController  implements Initializable {
         CurrentUser.type = user.getType();
 
         //TODO:判断用户是否勾选了维护信息的checkbox
-
+        if(checkBox_changeInfo.isSelected()){
+            FXHelper.newStage(getClass(),"/resources/fxml/ChangeUserInfo.fxml","个人信息维护!");
+            FXHelper.getStage().close();    //关闭系统第一个窗口
+            return;
+        }
 
 
 
         //用户验证通过,跳转到相应角色的界面
         if("系统管理员".equals(user.getType())){
-            Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/resources/fxml/SystemAdmin.fxml")));
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.setTitle("系统管理员");
-            stage.show();
-            JavaFXHelper.getStage().close();
+            FXHelper.newStage(getClass(),"/resources/fxml/SystemAdmin.fxml","系统管理员");
+            FXHelper.getStage().close();    //关闭系统第一个窗口
             return;
         }
         if("一卡通管理员".equals(user.getType())){
@@ -97,7 +102,7 @@ public class MainUIController  implements Initializable {
     private void quit(){
         Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION,"确认退出?",ButtonType.YES, ButtonType.CANCEL).showAndWait();
         if(buttonType.get().getButtonData().equals(ButtonBar.ButtonData.YES)){
-            JavaFXHelper.getStage().close();
+            FXHelper.getStage().close();
         }
     }
 
@@ -128,7 +133,7 @@ public class MainUIController  implements Initializable {
         alert.setTitle(title);
         alert.setHeaderText(header);
         alert.setContentText(message);
-        alert.initOwner(JavaFXHelper.getStage());
+        alert.initOwner(FXHelper.getStage());
         alert.show();
     }
 
