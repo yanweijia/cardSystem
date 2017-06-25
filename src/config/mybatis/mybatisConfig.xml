@@ -21,15 +21,27 @@
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
                 <property name="url"
-                          value="jdbc:mysql://localhost:3306/system?useUnicode=true&amp;characterEncoding=UTF-8"/>
-                <property name="username" value="root"/>
-                <property name="password" value="yanweijia"/>
+                          value="jdbc:mysql://server.yanweijia.cn:3306/system?useUnicode=true&amp;characterEncoding=UTF-8"/>
+                <property name="username" value="system"/>
+                <property name="password" value="yikatong"/>
             </dataSource>
         </environment>
     </environments>
 
     <mappers>
         <mapper resource="config/mybatis/sqlxml/UserMapper.xml"/>
+        <mapper resource="config/mybatis/sqlxml/BookAccountMapper.xml"/>
+        <mapper resource="config/mybatis/sqlxml/BookBorrowMapper.xml"/>
+        <mapper resource="config/mybatis/sqlxml/BookInfoMapper.xml"/>
+        <mapper resource="config/mybatis/sqlxml/ConsumeMapper.xml"/>
+        <mapper resource="config/mybatis/sqlxml/CourseChoiceMapper.xml"/>
+        <mapper resource="config/mybatis/sqlxml/CourseMapper.xml"/>
+        <mapper resource="config/mybatis/sqlxml/DormitoryApplyMapper.xml"/>
+        <mapper resource="config/mybatis/sqlxml/DormitoryMapper.xml"/>
+        <mapper resource="config/mybatis/sqlxml/DormitoryUserMapper.xml"/>
+        <mapper resource="config/mybatis/sqlxml/OrganizationMapper.xml"/>
+        <mapper resource="config/mybatis/sqlxml/SectionMapper.xml"/>
+        <mapper resource="config/mybatis/sqlxml/TeachingMapper.xml"/>
     </mappers>
 
 </configuration>

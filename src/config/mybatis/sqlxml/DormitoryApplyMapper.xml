@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.DormitoryApplyMapper">
+  <resultMap id="BaseResultMap" type="entity.DormitoryApply">
+    <id column="apply_id" jdbcType="INTEGER" property="applyId" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="radnom" jdbcType="BIT" property="radnom" />
+    <result column="building_no" jdbcType="VARCHAR" property="buildingNo" />
+    <result column="dormitory_no" jdbcType="VARCHAR" property="dormitoryNo" />
+    <result column="apply_time" jdbcType="TIMESTAMP" property="applyTime" />
+    <result column="result" jdbcType="BIT" property="result" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    apply_id, user_id, radnom, building_no, dormitory_no, apply_time, result
+  </sql>
+  <select id="selectByExample" parameterType="entity.DormitoryApplyExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dormitory_apply
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dormitory_apply
+    where apply_id = #{applyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dormitory_apply
+    where apply_id = #{applyId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="entity.DormitoryApplyExample">
+    delete from dormitory_apply
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="entity.DormitoryApply">
+    insert into dormitory_apply (apply_id, user_id, radnom, 
+      building_no, dormitory_no, apply_time, 
+      result)
+    values (#{applyId,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, #{radnom,jdbcType=BIT}, 
+      #{buildingNo,jdbcType=VARCHAR}, #{dormitoryNo,jdbcType=VARCHAR}, #{applyTime,jdbcType=TIMESTAMP}, 
+      #{result,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="entity.DormitoryApply">
+    insert into dormitory_apply
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="applyId != null">
+        apply_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="radnom != null">
+        radnom,
+      </if>
+      <if test="buildingNo != null">
+        building_no,
+      </if>
+      <if test="dormitoryNo != null">
+        dormitory_no,
+      </if>
+      <if test="applyTime != null">
+        apply_time,
+      </if>
+      <if test="result != null">
+        result,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="applyId != null">
+        #{applyId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="radnom != null">
+        #{radnom,jdbcType=BIT},
+      </if>
+      <if test="buildingNo != null">
+        #{buildingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="dormitoryNo != null">
+        #{dormitoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="applyTime != null">
+        #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="result != null">
+        #{result,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="entity.DormitoryApplyExample" resultType="java.lang.Long">
+    select count(*) from dormitory_apply
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update dormitory_apply
+    <set>
+      <if test="record.applyId != null">
+        apply_id = #{record.applyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.radnom != null">
+        radnom = #{record.radnom,jdbcType=BIT},
+      </if>
+      <if test="record.buildingNo != null">
+        building_no = #{record.buildingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dormitoryNo != null">
+        dormitory_no = #{record.dormitoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyTime != null">
+        apply_time = #{record.applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.result != null">
+        result = #{record.result,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update dormitory_apply
+    set apply_id = #{record.applyId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=VARCHAR},
+      radnom = #{record.radnom,jdbcType=BIT},
+      building_no = #{record.buildingNo,jdbcType=VARCHAR},
+      dormitory_no = #{record.dormitoryNo,jdbcType=VARCHAR},
+      apply_time = #{record.applyTime,jdbcType=TIMESTAMP},
+      result = #{record.result,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="entity.DormitoryApply">
+    update dormitory_apply
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="radnom != null">
+        radnom = #{radnom,jdbcType=BIT},
+      </if>
+      <if test="buildingNo != null">
+        building_no = #{buildingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="dormitoryNo != null">
+        dormitory_no = #{dormitoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="applyTime != null">
+        apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="result != null">
+        result = #{result,jdbcType=BIT},
+      </if>
+    </set>
+    where apply_id = #{applyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="entity.DormitoryApply">
+    update dormitory_apply
+    set user_id = #{userId,jdbcType=VARCHAR},
+      radnom = #{radnom,jdbcType=BIT},
+      building_no = #{buildingNo,jdbcType=VARCHAR},
+      dormitory_no = #{dormitoryNo,jdbcType=VARCHAR},
+      apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      result = #{result,jdbcType=BIT}
+    where apply_id = #{applyId,jdbcType=INTEGER}
+  </update>
+</mapper>

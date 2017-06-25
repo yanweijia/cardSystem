@@ -1,7 +1,6 @@
 package ui.controller.SystemAdmin;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
@@ -21,7 +20,7 @@ public class SystemAdminController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //TODO:ChoiceBox内容的初始化
-        choicebox_search_usertype.setItems(FXCollections.observableArrayList("用户类型1","用户类型2"));
-        choicebox_search_usertype.setValue("用户类型1");
+        choicebox_search_usertype.setItems(FXCollections.observableArrayList("系统管理员", "一卡通管理员", "学生", "教学系统管理员", "图书管理员", "宿舍管理员"));
+        choicebox_search_usertype.setValue("学生");
     }
 }

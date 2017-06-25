@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.DormitoryMapper">
+  <resultMap id="BaseResultMap" type="entity.Dormitory">
+    <id column="building_no" jdbcType="VARCHAR" property="buildingNo" />
+    <id column="dormitory_no" jdbcType="VARCHAR" property="dormitoryNo" />
+    <result column="max_num" jdbcType="SMALLINT" property="maxNum" />
+    <result column="now_num" jdbcType="SMALLINT" property="nowNum" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    building_no, dormitory_no, max_num, now_num
+  </sql>
+  <select id="selectByExample" parameterType="entity.DormitoryExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dormitory
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="entity.DormitoryKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dormitory
+    where building_no = #{buildingNo,jdbcType=VARCHAR}
+      and dormitory_no = #{dormitoryNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="entity.DormitoryKey">
+    delete from dormitory
+    where building_no = #{buildingNo,jdbcType=VARCHAR}
+      and dormitory_no = #{dormitoryNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="entity.DormitoryExample">
+    delete from dormitory
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="entity.Dormitory">
+    insert into dormitory (building_no, dormitory_no, max_num, 
+      now_num)
+    values (#{buildingNo,jdbcType=VARCHAR}, #{dormitoryNo,jdbcType=VARCHAR}, #{maxNum,jdbcType=SMALLINT}, 
+      #{nowNum,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="entity.Dormitory">
+    insert into dormitory
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="buildingNo != null">
+        building_no,
+      </if>
+      <if test="dormitoryNo != null">
+        dormitory_no,
+      </if>
+      <if test="maxNum != null">
+        max_num,
+      </if>
+      <if test="nowNum != null">
+        now_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="buildingNo != null">
+        #{buildingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="dormitoryNo != null">
+        #{dormitoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="maxNum != null">
+        #{maxNum,jdbcType=SMALLINT},
+      </if>
+      <if test="nowNum != null">
+        #{nowNum,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="entity.DormitoryExample" resultType="java.lang.Long">
+    select count(*) from dormitory
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update dormitory
+    <set>
+      <if test="record.buildingNo != null">
+        building_no = #{record.buildingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dormitoryNo != null">
+        dormitory_no = #{record.dormitoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maxNum != null">
+        max_num = #{record.maxNum,jdbcType=SMALLINT},
+      </if>
+      <if test="record.nowNum != null">
+        now_num = #{record.nowNum,jdbcType=SMALLINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update dormitory
+    set building_no = #{record.buildingNo,jdbcType=VARCHAR},
+      dormitory_no = #{record.dormitoryNo,jdbcType=VARCHAR},
+      max_num = #{record.maxNum,jdbcType=SMALLINT},
+      now_num = #{record.nowNum,jdbcType=SMALLINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="entity.Dormitory">
+    update dormitory
+    <set>
+      <if test="maxNum != null">
+        max_num = #{maxNum,jdbcType=SMALLINT},
+      </if>
+      <if test="nowNum != null">
+        now_num = #{nowNum,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where building_no = #{buildingNo,jdbcType=VARCHAR}
+      and dormitory_no = #{dormitoryNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="entity.Dormitory">
+    update dormitory
+    set max_num = #{maxNum,jdbcType=SMALLINT},
+      now_num = #{nowNum,jdbcType=SMALLINT}
+    where building_no = #{buildingNo,jdbcType=VARCHAR}
+      and dormitory_no = #{dormitoryNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.BookAccountMapper">
+  <resultMap id="BaseResultMap" type="entity.BookAccount">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="max_borrow_num" jdbcType="SMALLINT" property="maxBorrowNum" />
+    <result column="borrowed_num" jdbcType="SMALLINT" property="borrowedNum" />
+    <result column="register_date" jdbcType="DATE" property="registerDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, max_borrow_num, borrowed_num, register_date
+  </sql>
+  <select id="selectByExample" parameterType="entity.BookAccountExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from book_account
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from book_account
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from book_account
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="entity.BookAccountExample">
+    delete from book_account
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="entity.BookAccount">
+    insert into book_account (id, max_borrow_num, borrowed_num, 
+      register_date)
+    values (#{id,jdbcType=VARCHAR}, #{maxBorrowNum,jdbcType=SMALLINT}, #{borrowedNum,jdbcType=SMALLINT}, 
+      #{registerDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="entity.BookAccount">
+    insert into book_account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="maxBorrowNum != null">
+        max_borrow_num,
+      </if>
+      <if test="borrowedNum != null">
+        borrowed_num,
+      </if>
+      <if test="registerDate != null">
+        register_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="maxBorrowNum != null">
+        #{maxBorrowNum,jdbcType=SMALLINT},
+      </if>
+      <if test="borrowedNum != null">
+        #{borrowedNum,jdbcType=SMALLINT},
+      </if>
+      <if test="registerDate != null">
+        #{registerDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="entity.BookAccountExample" resultType="java.lang.Long">
+    select count(*) from book_account
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update book_account
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maxBorrowNum != null">
+        max_borrow_num = #{record.maxBorrowNum,jdbcType=SMALLINT},
+      </if>
+      <if test="record.borrowedNum != null">
+        borrowed_num = #{record.borrowedNum,jdbcType=SMALLINT},
+      </if>
+      <if test="record.registerDate != null">
+        register_date = #{record.registerDate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update book_account
+    set id = #{record.id,jdbcType=VARCHAR},
+      max_borrow_num = #{record.maxBorrowNum,jdbcType=SMALLINT},
+      borrowed_num = #{record.borrowedNum,jdbcType=SMALLINT},
+      register_date = #{record.registerDate,jdbcType=DATE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="entity.BookAccount">
+    update book_account
+    <set>
+      <if test="maxBorrowNum != null">
+        max_borrow_num = #{maxBorrowNum,jdbcType=SMALLINT},
+      </if>
+      <if test="borrowedNum != null">
+        borrowed_num = #{borrowedNum,jdbcType=SMALLINT},
+      </if>
+      <if test="registerDate != null">
+        register_date = #{registerDate,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="entity.BookAccount">
+    update book_account
+    set max_borrow_num = #{maxBorrowNum,jdbcType=SMALLINT},
+      borrowed_num = #{borrowedNum,jdbcType=SMALLINT},
+      register_date = #{registerDate,jdbcType=DATE}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
