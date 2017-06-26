@@ -73,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, password, type, available, name, balance, organization, section, phone, email,
+    id, password, type, available, name, balance, organization, section, phone, email, 
     addr
   </sql>
   <select id="selectByExample" parameterType="entity.UserExample" resultMap="BaseResultMap">
@@ -99,7 +99,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select
+    select 
     <include refid="Base_Column_List" />
     from user
     where id = #{id,jdbcType=VARCHAR}
@@ -115,24 +115,21 @@
     </if>
   </delete>
   <insert id="insert" parameterType="entity.User">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into user (password, type, available,
-    name, balance, organization,
-    section, phone, email,
-    addr)
-    values (#{password,jdbcType=VARCHAR}, #{type,jdbcType=CHAR}, #{available,jdbcType=CHAR},
-    #{name,jdbcType=VARCHAR}, #{balance,jdbcType=DECIMAL}, #{organization,jdbcType=INTEGER},
-    #{section,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
-    #{addr,jdbcType=VARCHAR})
+    insert into user (id, password, type, 
+      available, name, balance, 
+      organization, section, phone, 
+      email, addr)
+    values (#{id,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{type,jdbcType=CHAR}, 
+      #{available,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, #{balance,jdbcType=DECIMAL}, 
+      #{organization,jdbcType=INTEGER}, #{section,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="entity.User">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
       <if test="password != null">
         password,
       </if>
@@ -165,6 +162,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
       </if>
@@ -247,16 +247,16 @@
   <update id="updateByExample" parameterType="map">
     update user
     set id = #{record.id,jdbcType=VARCHAR},
-    password = #{record.password,jdbcType=VARCHAR},
-    type = #{record.type,jdbcType=CHAR},
-    available = #{record.available,jdbcType=CHAR},
-    name = #{record.name,jdbcType=VARCHAR},
-    balance = #{record.balance,jdbcType=DECIMAL},
-    organization = #{record.organization,jdbcType=INTEGER},
-    section = #{record.section,jdbcType=INTEGER},
-    phone = #{record.phone,jdbcType=VARCHAR},
-    email = #{record.email,jdbcType=VARCHAR},
-    addr = #{record.addr,jdbcType=VARCHAR}
+      password = #{record.password,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=CHAR},
+      available = #{record.available,jdbcType=CHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      balance = #{record.balance,jdbcType=DECIMAL},
+      organization = #{record.organization,jdbcType=INTEGER},
+      section = #{record.section,jdbcType=INTEGER},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      addr = #{record.addr,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

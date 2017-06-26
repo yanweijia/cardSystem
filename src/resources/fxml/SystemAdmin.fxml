@@ -42,21 +42,21 @@
                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                    </rowConstraints>
                                    <children>
-                                       <TextField promptText="用户编号" />
-                                       <ChoiceBox fx:id="choicebox_search_usertype" prefWidth="150.0" GridPane.columnIndex="1" />
-                                       <TextField promptText="用户姓名" GridPane.columnIndex="2" />
-                                       <ChoiceBox prefWidth="150.0" GridPane.rowIndex="1" />
-                                       <Button alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" text="查 询" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                       <TextField promptText="班级/科室" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                       <TextField fx:id="textFieldSearchUserID" promptText="用户编号" />
+                                       <ChoiceBox fx:id="choiceBoxSearchUsertype" prefWidth="150.0" GridPane.columnIndex="1" />
+                                       <TextField fx:id="textFieldSearchUserName" promptText="用户姓名" GridPane.columnIndex="2" />
+                                       <ChoiceBox fx:id="choiceBoxSearchOrganization" prefWidth="150.0" GridPane.rowIndex="1" />
+                                       <Button alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#queryUsersAndShow" text="查 询" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <ChoiceBox fx:id="choiceBoxSearchUserSection" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                    </children>
                                </GridPane>
-                               <TableView layoutX="14.0" layoutY="74.0" prefHeight="314.0" prefWidth="671.0">
+                               <TableView fx:id="tableViewSearch" layoutX="14.0" layoutY="74.0" prefHeight="314.0" prefWidth="671.0">
                                    <columns>
-                                       <TableColumn prefWidth="255.0" text="编号" />
-                                       <TableColumn prefWidth="371.0" text="类型" />
-                                       <TableColumn prefWidth="371.0" text="姓名" />
-                                       <TableColumn prefWidth="371.0" text="余额" />
-                                       <TableColumn prefWidth="371.0" text="部门/学院" />
+                                       <TableColumn fx:id="columnSearchID" prefWidth="255.0" text="编号" />
+                                       <TableColumn fx:id="columnSearchType" prefWidth="371.0" text="类型" />
+                                       <TableColumn fx:id="columnSearchName" prefWidth="371.0" text="姓名" />
+                                       <TableColumn fx:id="columnSearchBalance" prefWidth="371.0" text="余额" />
+                                       <TableColumn fx:id="columnSearchPhone" prefWidth="371.0" text="电话" />
                                    </columns>
                                    <columnResizePolicy>
                                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -72,8 +72,8 @@
                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                    </rowConstraints>
                                    <children>
-                                       <Button mnemonicParsing="false" text="修改密码" GridPane.columnIndex="2" />
-                                       <Button mnemonicParsing="false" text="维护信息" GridPane.columnIndex="1" />
+                                       <Button mnemonicParsing="false" text="维护信息" GridPane.columnIndex="2" />
+                              <Button mnemonicParsing="false" text="删除选中用户" GridPane.columnIndex="1" />
                                    </children>
                                </GridPane>
 
@@ -94,33 +94,36 @@
                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
                                <Label text="用户编号:" />
-                               <TextField promptText="请输入学号/教职工号" GridPane.columnIndex="1" />
+                               <TextField fx:id="textFieldNewUserID" promptText="请输入学号/教职工号" GridPane.columnIndex="1" />
                                <Label text="用户密码:" GridPane.rowIndex="1" />
-                               <TextField promptText="设置密码" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                               <TextField fx:id="textFieldNewUserPW" promptText="设置密码" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                <Label text="用户类型:" GridPane.rowIndex="2" />
-                               <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                               <ChoiceBox fx:id="choiceBoxNewUserType" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                <Label text="用户状态:" GridPane.rowIndex="3" />
-                               <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                               <Button alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" prefHeight="16.0" prefWidth="370.0" text="添加" textAlignment="CENTER" GridPane.rowIndex="7">
+                               <ChoiceBox fx:id="choiceBoxNewUserAvailable" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                               <Button alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#newUser" prefHeight="16.0" prefWidth="370.0" text="添加" textAlignment="CENTER" GridPane.rowIndex="8">
                                    <font>
                                        <Font name="Microsoft YaHei Bold" size="17.0" />
                                    </font></Button>
-                               <Button alignment="CENTER" cancelButton="true" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="13.0" prefWidth="343.0" text="重设" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                               <Button alignment="CENTER" cancelButton="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#resetNewUser" prefHeight="13.0" prefWidth="343.0" text="重设" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="8">
                                    <font>
                                        <Font name="Microsoft YaHei Bold" size="17.0" />
                                    </font>
                                </Button>
                                <Label text="用户姓名:" GridPane.rowIndex="4" />
-                               <TextField promptText="用户姓名" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                               <TextField fx:id="textFieldNewUserName" promptText="用户姓名" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                <Label text="所属部门/学院:" GridPane.rowIndex="5" />
-                               <Label text="电话:" GridPane.rowIndex="6" />
-                               <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                               <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                               <Label text="电话:" GridPane.rowIndex="7" />
+                               <ChoiceBox fx:id="choiceBoxNewUserOrganization" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                               <TextField fx:id="textFieldNewUserPhone" promptText="请输入电话号码" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Label text="所属班级" GridPane.rowIndex="6" />
+                        <ChoiceBox fx:id="choiceBoxNewUserSection" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                            </children>
                        </GridPane>
                    </content>
@@ -149,15 +152,15 @@
                         <Label text="姓名:" GridPane.rowIndex="4" />
                         <Label text="组织机构:" GridPane.rowIndex="5" />
                         <Label text="科室/班级:" GridPane.rowIndex="6" />
-                        <Button defaultButton="true" mnemonicParsing="false" text="确认修改" GridPane.rowIndex="7" />
-                        <Button mnemonicParsing="false" text="取消修改" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                        <TextField GridPane.columnIndex="1" />
-                        <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" defaultButton="true" mnemonicParsing="false" text="查询" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Button defaultButton="true" mnemonicParsing="false" onAction="#confirmUpdateUserInfo" text="确认修改" GridPane.rowIndex="7" />
+                        <Button mnemonicParsing="false" onAction="#resetUpdateUserInfo" text="取消修改" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <TextField fx:id="textFieldUpdateUserID" GridPane.columnIndex="1" />
+                        <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" defaultButton="true" mnemonicParsing="false" onAction="#queryOriginalUserInfo" text="查询" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <ChoiceBox fx:id="choiceBoxUpdateUserAvailable" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <ChoiceBox fx:id="choiceBoxUpdateUserType" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <ChoiceBox fx:id="choiceBoxUpdateUserOrganization" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="textFieldUpdateUserName" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <ChoiceBox fx:id="choiceBoxUpdateUserSection" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                      </children>
                        </GridPane>
                    </content>
@@ -175,8 +178,8 @@
                     </rowConstraints>
                      <children>
                         <Label text="编号:" />
-                        <TextField GridPane.columnIndex="1" />
-                        <Button defaultButton="true" mnemonicParsing="false" text="重置" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <TextField fx:id="textFieldResetPwUserID" GridPane.columnIndex="1" />
+                        <Button defaultButton="true" mnemonicParsing="false" onAction="#resetUserPassword" text="重置" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <font>
                               <Font size="17.0" />
                            </font></Button>
@@ -202,17 +205,17 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <TextField promptText="组织机构编号" />
-                                          <TextField promptText="组织机构名称" GridPane.columnIndex="1" />
-                                          <Button defaultButton="true" mnemonicParsing="false" text="查询" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <TextField fx:id="textFieldOrganizationID" promptText="组织机构编号" />
+                                          <TextField fx:id="textFieldOrganizationName" promptText="组织机构名称" GridPane.columnIndex="1" />
+                                          <Button defaultButton="true" mnemonicParsing="false" onAction="#queryOrganizationBy" text="查询" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                        </children>
                                     </GridPane>
                                  </top>
                                  <center>
-                                    <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                    <TableView fx:id="tableViewOrganization" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                       <columns>
-                                        <TableColumn prefWidth="75.0" text="编号" />
-                                        <TableColumn prefWidth="75.0" text="名称" />
+                                        <TableColumn fx:id="columnOrganizatonID" prefWidth="75.0" text="编号" />
+                                        <TableColumn fx:id="columnOrganizationName" prefWidth="75.0" text="名称" />
                                       </columns>
                                        <columnResizePolicy>
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -246,8 +249,8 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <TextField promptText="请输入名称" />
-                                    <Button defaultButton="true" mnemonicParsing="false" text="增加" GridPane.columnIndex="1" />
+                                    <TextField fx:id="textFieldOrganizationNewName" promptText="请输入名称" />
+                                    <Button defaultButton="true" mnemonicParsing="false" onAction="#addNewOrganization" text="增加" GridPane.columnIndex="1" />
                                  </children>
                               </GridPane>
                            </content></Tab>
@@ -273,20 +276,20 @@
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <TextField promptText="编号" />
-                                          <TextField promptText="名称" GridPane.columnIndex="1" />
-                                          <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <TextField fx:id="textFieldSectionID" promptText="编号" />
+                                          <TextField fx:id="textFieldSectionName" promptText="名称" GridPane.columnIndex="1" />
+                                          <ChoiceBox fx:id="choiceBoxSectionOrganization" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                           <Label text="所属组织机构:" GridPane.rowIndex="1" />
-                                          <Button defaultButton="true" mnemonicParsing="false" text="查询" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <Button defaultButton="true" mnemonicParsing="false" onAction="#querySectionBy" text="查询" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                        </children>
                                     </GridPane>
                                  </top>
                                  <center>
-                                    <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                    <TableView fx:id="tableViewSection" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                       <columns>
-                                        <TableColumn prefWidth="75.0" text="所属组织机构" />
-                                        <TableColumn prefWidth="75.0" text="编号" />
-                                          <TableColumn prefWidth="75.0" text="名称" />
+                                        <TableColumn fx:id="columnSectionOrganizationID" prefWidth="75.0" text="所属组织机构" />
+                                        <TableColumn fx:id="columnSectionID" prefWidth="75.0" text="编号" />
+                                          <TableColumn fx:id="columnSectionName" prefWidth="75.0" text="名称" />
                                       </columns>
                                        <columnResizePolicy>
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -323,10 +326,10 @@
                                 </rowConstraints>
                                  <children>
                                     <Label text="所属部门:" />
-                                    <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" />
-                                    <TextField promptText="请输入名称" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <ChoiceBox fx:id="choiceBoxSectionNewSectionOrganization" prefWidth="150.0" GridPane.columnIndex="1" />
+                                    <TextField fx:id="textFieldSectionNewSectionName" promptText="请输入名称" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <Label text="名称:" GridPane.rowIndex="1" />
-                                    <Button defaultButton="true" mnemonicParsing="false" text="添加" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Button defaultButton="true" mnemonicParsing="false" onAction="#addNewSection" text="添加" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                  </children>
                               </GridPane>
                            </content></Tab>
