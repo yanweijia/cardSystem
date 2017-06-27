@@ -72,8 +72,7 @@
                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                    </rowConstraints>
                                    <children>
-                                       <Button mnemonicParsing="false" onAction="#changeUserInfoBtnClicked" text="维护信息" GridPane.columnIndex="2" />
-                              <Button mnemonicParsing="false" onAction="#deleteSelectedUser" text="删除选中用户" GridPane.columnIndex="1" />
+                              <Button mnemonicParsing="false" onAction="#deleteSelectedUser" text="删除选中用户" GridPane.columnIndex="2" />
                                    </children>
                                </GridPane>
 
