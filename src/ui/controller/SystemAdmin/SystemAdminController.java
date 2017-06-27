@@ -10,10 +10,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
@@ -25,6 +22,7 @@ import utils.FXHelper;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
@@ -32,6 +30,10 @@ import java.util.ResourceBundle;
  */
 public class SystemAdminController implements Initializable {
     final Logger logger = LogManager.getLogger(SystemAdminController.class);
+
+
+
+
 
     //查询选项卡的控件
     @FXML private ChoiceBox<String> choiceBoxSearchUsertype,choiceBoxSearchOrganization,choiceBoxSearchUserSection;
@@ -65,6 +67,71 @@ public class SystemAdminController implements Initializable {
     @FXML private TableView<Section> tableViewSection;
     @FXML private TableColumn<Section,String> columnSectionOrganizationID,columnSectionID,columnSectionName;
 
+
+
+    /**
+     * 删除选中Section
+     */
+    @FXML
+    private void deleteSelectedSection(){
+        Section section = tableViewSection.getSelectionModel().getSelectedItem();
+        if(section==null){
+            FXHelper.showWarningDialog("未选中任何数据,无法删除!");
+            return;
+        }
+        Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION,"确认删除?",ButtonType.YES, ButtonType.CANCEL).showAndWait();
+        if(buttonType.get().getButtonData().equals(ButtonBar.ButtonData.YES)){
+            SqlSession sqlSession = DBAccess.getSqlSession();
+            SectionMapper sectionMapper = sqlSession.getMapper(SectionMapper.class);
+            sectionMapper.deleteByPrimaryKey(section.getSectionId());
+            FXHelper.showInfoDialog("删除成功!");
+            sqlSession.commit();
+            sqlSession.close();
+        }
+    }
+
+    /**
+     * 删除选中Organization
+     */
+    @FXML
+    private void deleteSelectedOrganization(){
+        Organization organization = tableViewOrganization.getSelectionModel().getSelectedItem();
+        if(organization==null){
+            FXHelper.showWarningDialog("未选中任何数据,无法删除!");
+            return;
+        }
+        Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION,"确认删除?",ButtonType.YES, ButtonType.CANCEL).showAndWait();
+        if(buttonType.get().getButtonData().equals(ButtonBar.ButtonData.YES)){
+            SqlSession sqlSession = DBAccess.getSqlSession();
+            OrganizationMapper organizationMapper = sqlSession.getMapper(OrganizationMapper.class);
+            organizationMapper.deleteByPrimaryKey(organization.getOrganization_id());
+            FXHelper.showInfoDialog("删除成功!");
+            sqlSession.commit();
+            sqlSession.close();
+        }
+    }
+
+
+    /**
+     * 删除选中用户
+      */
+    @FXML
+    private void deleteSelectedUser(){
+        User user = tableViewSearch.getSelectionModel().getSelectedItem();
+        if(user==null){
+            FXHelper.showWarningDialog("未选中任何数据,无法删除!");
+            return;
+        }
+        Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION,"确认删除?",ButtonType.YES, ButtonType.CANCEL).showAndWait();
+        if(buttonType.get().getButtonData().equals(ButtonBar.ButtonData.YES)){
+            SqlSession sqlSession = DBAccess.getSqlSession();
+            UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+            userMapper.deleteByPrimaryKey(user.getId());
+            FXHelper.showInfoDialog("删除成功!");
+            sqlSession.commit();
+            sqlSession.close();
+        }
+    }
 
 
     /**

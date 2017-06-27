@@ -72,8 +72,8 @@
                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                    </rowConstraints>
                                    <children>
-                                       <Button mnemonicParsing="false" text="维护信息" GridPane.columnIndex="2" />
-                              <Button mnemonicParsing="false" text="删除选中用户" GridPane.columnIndex="1" />
+                                       <Button mnemonicParsing="false" onAction="#changeUserInfoBtnClicked" text="维护信息" GridPane.columnIndex="2" />
+                              <Button mnemonicParsing="false" onAction="#deleteSelectedUser" text="删除选中用户" GridPane.columnIndex="1" />
                                    </children>
                                </GridPane>
 
@@ -232,7 +232,7 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <Button defaultButton="true" mnemonicParsing="false" text="删除选中" GridPane.columnIndex="1" />
+                                          <Button defaultButton="true" mnemonicParsing="false" onAction="#deleteSelectedOrganization" text="删除选中" GridPane.columnIndex="1" />
                                        </children>
                                     </GridPane>
                                  </bottom></BorderPane>
@@ -306,7 +306,7 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <Button defaultButton="true" mnemonicParsing="false" text="删除选中" GridPane.columnIndex="1" />
+                                          <Button defaultButton="true" mnemonicParsing="false" onAction="#deleteSelectedSection" text="删除选中" GridPane.columnIndex="1" />
                                        </children>
                                     </GridPane>
                                  </bottom>
