@@ -16,7 +16,7 @@
 
 <BorderPane prefHeight="546.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.LibraryAdmin.LibraryAdminController">
    <top>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="102.0" prefWidth="655.0" text="图书馆管理员" BorderPane.alignment="CENTER">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="102.0" prefWidth="655.0" text="图书馆管理员" textAlignment="CENTER" BorderPane.alignment="CENTER">
          <font>
             <Font name="Microsoft YaHei Bold" size="39.0" />
          </font>
