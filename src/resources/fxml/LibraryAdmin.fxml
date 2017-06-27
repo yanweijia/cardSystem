@@ -58,7 +58,7 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Button mnemonicParsing="false" text="删除选中图书" GridPane.columnIndex="1" />
+                              <Button mnemonicParsing="false" onAction="#deleteSelectedBook" text="删除选中图书" GridPane.columnIndex="1" />
                            </children>
                         </GridPane>
                      </bottom>
@@ -82,9 +82,156 @@
                         </TableView>
                      </center></BorderPane>
                </content></Tab>
-          <Tab text="新增图书" />
-            <Tab text="手动修改图书信息" />
-            <Tab text="借阅查询/手动还书" />
+          <Tab text="新增图书">
+               <content>
+                  <GridPane>
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button defaultButton="true" mnemonicParsing="false" onAction="#addNewBookInfo" text="确认添加" GridPane.rowIndex="10" />
+                        <Button cancelButton="true" mnemonicParsing="false" onAction="#resetBookInfo" text="重设" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                        <Label text="书名:" />
+                        <Label text="类别:" GridPane.rowIndex="1" />
+                        <Label text="作者:" GridPane.rowIndex="2" />
+                        <Label text="出版日期:" GridPane.rowIndex="4" />
+                        <Label text="图书价格:" GridPane.rowIndex="5" />
+                        <Label text="ISBN编号:" GridPane.rowIndex="6" />
+                        <Label text="书架及位置:" GridPane.rowIndex="7" />
+                        <Label text="总共本数:" GridPane.rowIndex="8" />
+                        <Label text="可用(剩余)本数:" GridPane.rowIndex="9" />
+                        <TextField fx:id="textFieldNewBookRemain" promptText="剩余(未借出)存量" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                        <TextField fx:id="textFieldNewBookAmount" promptText="总共存量" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <TextField fx:id="textFieldNewBookRack" promptText="图书放置书架的位置及层数" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <TextField fx:id="textFieldNewBookISBN" promptText="ISBN编号" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <TextField fx:id="textFieldNewBookPrice" promptText="价格,如 20.50" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="textFieldNewBookPubDate" promptText="格式为: yyyy-MM-dd 如 2014-01-01" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="textFieldNewBookAuthor" promptText="请输入作者,译者名字" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="textFieldNewBookName" promptText="请输入书名" GridPane.columnIndex="1" />
+                        <ChoiceBox fx:id="choiceBoxNewBookType" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="出版社名称:" GridPane.rowIndex="3" />
+                        <TextField fx:id="textFieldNewBookPublisher" promptText="出版社名称" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                     </children>
+                  </GridPane>
+               </content></Tab>
+            <Tab text="手动修改图书信息">
+               <content>
+                  <GridPane>
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button defaultButton="true" disable="true" mnemonicParsing="false" text="确认修改(仅演示)" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                        <TextField promptText="请输入图书编号" />
+                        <Button defaultButton="true" disable="true" mnemonicParsing="false" text="查询(仅演示)" GridPane.columnIndex="1" />
+                        <Label text="书名:" GridPane.rowIndex="1" />
+                        <Label text="类别:" GridPane.rowIndex="2" />
+                        <Label text="作者:" GridPane.rowIndex="3" />
+                        <Label text="出版社名称:" GridPane.rowIndex="4" />
+                        <Label text="出版日期:" GridPane.rowIndex="5" />
+                        <Label text="登记日期:" GridPane.rowIndex="6" />
+                        <Label text="图书价格:" GridPane.rowIndex="7" />
+                        <Label text="ISBN编号:" GridPane.rowIndex="8" />
+                        <Label text="书架及位置:" GridPane.rowIndex="9" />
+                        <Label text="总共本数:" GridPane.rowIndex="10" />
+                        <Label text="可用(剩余)本数:" GridPane.rowIndex="11" />
+                        <TextField promptText="请输入书名:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                        <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                     </children>
+                  </GridPane>
+               </content></Tab>
+            <Tab text="借阅查询/手动还书">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <top>
+                        <GridPane BorderPane.alignment="CENTER">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <TextField fx:id="textFieldBorrowID" promptText="请输入书籍编号" />
+                              <TextField fx:id="textFieldBorrowerID" promptText="请输入借阅者编号" GridPane.columnIndex="1" />
+                              <Button defaultButton="true" mnemonicParsing="false" onAction="#queryBookBorrow" text="查询" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <ChoiceBox fx:id="choiceBoxBorrowIfBack" prefWidth="150.0" GridPane.rowIndex="1" />
+                           </children>
+                        </GridPane>
+                     </top>
+                     <bottom>
+                        <GridPane BorderPane.alignment="CENTER">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Button defaultButton="true" mnemonicParsing="false" onAction="#returnBorrowedBook" text="手动还(选中的)书" GridPane.columnIndex="1" />
+                           </children>
+                        </GridPane>
+                     </bottom>
+                     <center>
+                        <TableView fx:id="tableViewBookBorrow" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                          <columns>
+                            <TableColumn fx:id="columnBorrowID" prefWidth="75.0" text="编号" />
+                            <TableColumn fx:id="columnBorrowerID" prefWidth="75.0" text="用户编号" />
+                              <TableColumn fx:id="columnBorrowBookID" prefWidth="75.0" text="书籍编号" />
+                              <TableColumn fx:id="columnBorrowTime" prefWidth="75.0" text="借书时间" />
+                              <TableColumn fx:id="columnBorrowSBackTime" prefWidth="75.0" text="应还时间" />
+                              <TableColumn fx:id="columnBorrowIfBack" prefWidth="75.0" text="是否归还" />
+                              <TableColumn fx:id="columnBorrowBackTime" prefWidth="75.0" text="归还时间" />
+                          </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </center>
+                  </BorderPane>
+               </content></Tab>
         </tabs>
       </TabPane>
    </center>

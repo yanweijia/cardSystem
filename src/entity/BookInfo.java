@@ -70,6 +70,24 @@ public class BookInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public BookInfo() {
+    }
+
+    public BookInfo(Integer bookId, String name, String type, String author, String publisher, Date pubDate, Date registerDate, BigDecimal price, String isbn, String bookrack, Short totalNum, Short remainNum) {
+        this.bookId = bookId;
+        this.name = name;
+        this.type = type;
+        this.author = author;
+        this.publisher = publisher;
+        this.pubDate = pubDate;
+        this.registerDate = registerDate;
+        this.price = price;
+        this.isbn = isbn;
+        this.bookrack = bookrack;
+        this.totalNum = totalNum;
+        this.remainNum = remainNum;
+    }
+
     public Integer getBookId() {
         return bookId;
     }

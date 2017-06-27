@@ -83,6 +83,13 @@ public class BookBorrow implements Serializable {
     public void setsBacktime(Date sBacktime) {
         this.sBacktime = sBacktime;
     }
+    public Date getSBacktime() {
+        return sBacktime;
+    }
+
+    public void setSBacktime(Date sBacktime) {
+        this.sBacktime = sBacktime;
+    }
 
     public Boolean getIfback() {
         return ifback;
