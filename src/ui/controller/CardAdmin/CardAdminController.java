@@ -1,9 +1,6 @@
 package ui.controller.CardAdmin;
 
-import dao.ConsumeMapper;
-import dao.OrganizationMapper;
-import dao.SectionMapper;
-import dao.UserMapper;
+import dao.*;
 import db.DBAccess;
 import entity.*;
 import javafx.beans.value.ObservableValue;
@@ -47,6 +44,83 @@ public class CardAdminController implements Initializable{
     @FXML private TextField textFieldSearchConsumeUserID;
     @FXML private TableView<Consume> tableViewSearchConsume;
     @FXML private TableColumn<Consume,String> columnConsumeUserID,columnConsumeTime,columnConsumeMoney,columnConsumeGoodsName;
+
+    //查看待审核列表
+    @FXML private TableView<RequestModify> tableViewRequestModify;
+    @FXML private TableColumn<RequestModify,String> columnModifyID,columnModifyUserID,columnModifyPhone,columnModifyEmail,columnModifyAddr;
+
+
+    /**
+     * 驳回修改信息请求
+     */
+    @FXML
+    private void rejectSelectedRequestModify(){
+        SqlSession sqlSession = DBAccess.getSqlSession();
+        RequestModifyMapper requestModifyMapper = sqlSession.getMapper(RequestModifyMapper.class);
+        RequestModify requestModify = tableViewRequestModify.getSelectionModel().getSelectedItem();
+        if(requestModify==null){
+            FXHelper.showWarningDialog("抱歉,您还没有选中任何信息,无法进行修改的审批或驳回!");
+            return;
+        }
+        requestModify.setValidate(true);
+        if(requestModifyMapper.updateByPrimaryKey(requestModify)>0){
+            FXHelper.showInfoDialog("驳回成功!");
+        }else{
+            FXHelper.showWarningDialog("驳回失败!");
+        }
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
+    /**
+     * 通过修改信息请求
+     */
+    @FXML
+    private void passTheSelectedRequestModify(){
+        SqlSession sqlSession = DBAccess.getSqlSession();
+        RequestModifyMapper requestModifyMapper = sqlSession.getMapper(RequestModifyMapper.class);
+        UserMapper userMapper = sqlSession.getMapper((UserMapper.class));
+        RequestModify requestModify = tableViewRequestModify.getSelectionModel().getSelectedItem();
+        if(requestModify==null){
+            FXHelper.showWarningDialog("抱歉,您还没有选中任何信息,无法进行修改的审批或驳回!");
+            return;
+        }
+        requestModify.setValidate(true);
+        requestModifyMapper.updateByPrimaryKey(requestModify);
+        User user = userMapper.selectByPrimaryKey(requestModify.getUserId());
+        user.setPhone(requestModify.getPhone());
+        user.setEmail(requestModify.getEmail());
+        user.setAddr(requestModify.getAddr());
+        if(userMapper.updateByPrimaryKey(user)>0){
+            FXHelper.showInfoDialog("审批成功!");
+        }else{
+            FXHelper.showWarningDialog("修改失败,请联系管理员!");
+        }
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
+
+
+
+    /**
+     * 查询待审核列表
+     */
+    @FXML
+    private void refreshRequestList(){
+        SqlSession sqlSession = DBAccess.getSqlSession();
+        RequestModifyMapper requestModifyMapper = sqlSession.getMapper(RequestModifyMapper.class);
+        RequestModifyExample requestModifyExample = new RequestModifyExample();
+        requestModifyExample.or().andValidateEqualTo(false);
+        List<RequestModify> requestModifyList =  requestModifyMapper.selectByExample(requestModifyExample);
+        if(requestModifyList.size()==0){
+            FXHelper.showInfoDialog("没有新的待审核修改请求!");
+        }
+
+        tableViewRequestModify.setItems(FXCollections.observableList(requestModifyList));
+        sqlSession.close();
+    }
+
 
 
     /**
@@ -237,6 +311,13 @@ public class CardAdminController implements Initializable{
         columnConsumeTime.setCellValueFactory(new PropertyValueFactory<>("time"));
         columnConsumeMoney.setCellValueFactory(new PropertyValueFactory<>("money"));
         columnConsumeGoodsName.setCellValueFactory(new PropertyValueFactory<>("goodsName"));
+
+        //审批用户修改信息请求选项卡相关
+        columnModifyID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        columnModifyUserID.setCellValueFactory(new PropertyValueFactory<>("userId"));
+        columnModifyPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        columnModifyEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        columnModifyAddr.setCellValueFactory(new PropertyValueFactory<>("addr"));
 
     }
 

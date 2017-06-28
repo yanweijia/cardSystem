@@ -182,18 +182,18 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Button defaultButton="true" mnemonicParsing="false" text="刷新待审核列表" GridPane.columnIndex="1" />
+                              <Button defaultButton="true" mnemonicParsing="false" onAction="#refreshRequestList" text="刷新待审核列表" GridPane.columnIndex="1" />
                            </children>
                         </GridPane>
                      </top>
                      <center>
-                        <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                        <TableView fx:id="tableViewRequestModify" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="编号" />
-                            <TableColumn prefWidth="75.0" text="用户编号" />
-                              <TableColumn prefWidth="75.0" text="联系电话" />
-                              <TableColumn prefWidth="75.0" text="邮箱" />
-                              <TableColumn prefWidth="75.0" text="家庭住址" />
+                            <TableColumn fx:id="columnModifyID" prefWidth="75.0" text="编号" />
+                            <TableColumn fx:id="columnModifyUserID" prefWidth="75.0" text="用户编号" />
+                              <TableColumn fx:id="columnModifyPhone" prefWidth="75.0" text="联系电话" />
+                              <TableColumn fx:id="columnModifyEmail" prefWidth="75.0" text="邮箱" />
+                              <TableColumn fx:id="columnModifyAddr" prefWidth="75.0" text="家庭住址" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -210,8 +210,8 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Button defaultButton="true" mnemonicParsing="false" text="选中项通过申请" />
-                              <Button cancelButton="true" mnemonicParsing="false" text="驳回选中项申请" GridPane.columnIndex="1" />
+                              <Button defaultButton="true" mnemonicParsing="false" onAction="#passTheSelectedRequestModify" text="选中项通过申请" />
+                              <Button cancelButton="true" mnemonicParsing="false" onAction="#rejectSelectedRequestModify" text="驳回选中项申请" GridPane.columnIndex="1" />
                            </children>
                         </GridPane>
                      </bottom>

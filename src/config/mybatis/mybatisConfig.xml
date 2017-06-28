@@ -42,6 +42,7 @@
         <mapper resource="config/mybatis/sqlxml/OrganizationMapper.xml"/>
         <mapper resource="config/mybatis/sqlxml/SectionMapper.xml"/>
         <mapper resource="config/mybatis/sqlxml/TeachingMapper.xml"/>
+        <mapper resource="config/mybatis/sqlxml/RequestModifyMapper.xml"/>
     </mappers>
 
 </configuration>
