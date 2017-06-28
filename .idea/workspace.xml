@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/fxml/DormitoryAdmin.fxml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ui/controller/DormitoryAdmin/DormitoryAdminController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/fxml/CourseAdmin.fxml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ui/controller/CourseAdmin/CourseAdminController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/entity/DormitoryKey.java" afterPath="$PROJECT_DIR$/src/entity/DormitoryKey.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/entity/DormitoryUserKey.java" afterPath="$PROJECT_DIR$/src/entity/DormitoryUserKey.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/test.java" afterPath="$PROJECT_DIR$/src/test/test.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -94,100 +91,37 @@
     <ui_properties converted="true" />
     <breakpoint_rules converted="true" />
   </component>
-  <component name="DockManager">
-    <window id="5">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="DormitoryAdmin.fxml" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/resources/fxml/DormitoryAdmin.fxml">
-                <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-                  <state />
-                </provider>
-                <provider editor-type-id="text-editor">
-                  <state relative-caret-position="504">
-                    <caret line="212" column="43" lean-forward="false" selection-start-line="212" selection-start-column="43" selection-end-line="212" selection-end-column="43" />
-                    <folding>
-                      <marker date="1498673226851" expanded="true" signature="6441:8381" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="6509:8355" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="6536:7426" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="6601:7398" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="6647:6898" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="6941:7085" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="7123:7362" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="7456:8323" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="7590:8292" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="7626:8074" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="8122:8255" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="8425:14843" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="8450:14837" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="8546:14811" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="8573:14782" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="8612:12088" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="8649:12082" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="8729:12044" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="8768:9759" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="8845:9719" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="8903:9190" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="9245:9413" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="9463:9671" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="9801:11096" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="9878:11053" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="9936:10339" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="10394:10562" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="10612:11005" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="11138:12000" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="11253:11957" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="11301:11691" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="11751:11908" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="14292:14754" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="14329:14748" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="14505:14710" ph="..." />
-                      <marker date="1498673226851" expanded="true" signature="14545:14671" ph="..." />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="JavaFxApplication" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="test.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/test.java">
+      <file leaf-file-name="CourseAdminController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ui/controller/CourseAdmin/CourseAdminController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+            <state relative-caret-position="85">
+              <caret line="5" column="34" lean-forward="false" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DormitoryAdminController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/ui/controller/DormitoryAdmin/DormitoryAdminController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="46" column="86" lean-forward="false" selection-start-line="46" selection-start-column="86" selection-end-line="46" selection-end-column="86" />
+      <file leaf-file-name="CourseAdmin.fxml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/resources/fxml/CourseAdmin.fxml">
+          <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+            <state />
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="388">
+              <caret line="65" column="70" lean-forward="false" selection-start-line="65" selection-start-column="70" selection-end-line="65" selection-end-column="70" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <marker date="1498674495084" expanded="true" signature="2698:2931" ph="..." />
+                <marker date="1498674495084" expanded="true" signature="3025:3819" ph="..." />
+                <marker date="1498674495084" expanded="true" signature="3128:3788" ph="..." />
+                <marker date="1498674495084" expanded="true" signature="3164:3570" ph="..." />
+                <marker date="1498674495084" expanded="true" signature="3618:3751" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DormitoryUserKey.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/entity/DormitoryUserKey.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="25" lean-forward="false" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="25" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -197,8 +131,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -265,6 +199,7 @@
         <option value="$PROJECT_DIR$/src/entity/DormitoryUserKey.java" />
         <option value="$PROJECT_DIR$/src/resources/fxml/DormitoryAdmin.fxml" />
         <option value="$PROJECT_DIR$/src/ui/controller/DormitoryAdmin/DormitoryAdminController.java" />
+        <option value="$PROJECT_DIR$/src/resources/fxml/CourseAdmin.fxml" />
       </list>
     </option>
   </component>
@@ -527,24 +462,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="fxml" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="system" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="system" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="entity" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1104,7 +1021,7 @@
       <workItem from="1497970397407" duration="246000" />
       <workItem from="1497970648441" duration="31404000" />
       <workItem from="1498479733143" duration="39015000" />
-      <workItem from="1498581966882" duration="27672000" />
+      <workItem from="1498581966882" duration="28481000" />
     </task>
     <task id="LOCAL-00001" summary="first commit &amp;backup">
       <created>1497967830038</created>
@@ -1211,11 +1128,18 @@
       <option name="project" value="LOCAL" />
       <updated>1498666916009</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="宿舍管理员功能简单完成">
+      <created>1498673708674</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1498673708674</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="143695000" />
+    <option name="totallyTimeSpent" value="144504000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1066" extended-state="6" />
@@ -1230,12 +1154,12 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19501625" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4452871" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13434453" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15635005" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16328709" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1307364" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13340448" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2497332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1343,7 +1267,8 @@
     <MESSAGE value="一卡通管理员代码基本完成" />
     <MESSAGE value="一卡通管理员代码完成!" />
     <MESSAGE value="bugfix:一卡通管理员代码完成!" />
-    <option name="LAST_COMMIT_MESSAGE" value="bugfix:一卡通管理员代码完成!" />
+    <MESSAGE value="宿舍管理员功能简单完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="宿舍管理员功能简单完成" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1356,21 +1281,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/f8a6e596-1e3f-4533-933f-82a242e1d234/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/entity/SectionExample.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="114" column="0" lean-forward="false" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/entity/UserExample.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="201">
@@ -1890,6 +1800,59 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/entity/OrganizationExample.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="259" column="0" lean-forward="false" selection-start-line="259" selection-start-column="0" selection-end-line="259" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/entity/DormitoryUserExample.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6405">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/entity/DormitoryUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="26" lean-forward="false" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="26" />
+          <folding>
+            <element signature="e#286#287#0" expanded="true" />
+            <element signature="e#316#317#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/entity/DormitoryKey.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="39" lean-forward="true" selection-start-line="25" selection-start-column="39" selection-end-line="25" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/entity/DormitoryUserKey.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="9" lean-forward="true" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/controller/DormitoryAdmin/DormitoryAdminController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="376">
+          <caret line="46" column="86" lean-forward="false" selection-start-line="46" selection-start-column="86" selection-end-line="46" selection-end-column="86" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -1946,55 +1909,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/entity/OrganizationExample.java">
+    <entry file="file://$PROJECT_DIR$/src/ui/controller/CourseAdmin/CourseAdminController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="259" column="0" lean-forward="false" selection-start-line="259" selection-start-column="0" selection-end-line="259" selection-end-column="0" />
+        <state relative-caret-position="85">
+          <caret line="5" column="34" lean-forward="false" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/entity/DormitoryUserExample.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6405">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
+    <entry file="file://$PROJECT_DIR$/src/resources/fxml/CourseAdmin.fxml">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/entity/DormitoryUser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="26" lean-forward="false" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="26" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="65" column="70" lean-forward="false" selection-start-line="65" selection-start-column="70" selection-end-line="65" selection-end-column="70" />
           <folding>
-            <element signature="e#286#287#0" expanded="true" />
-            <element signature="e#316#317#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/entity/DormitoryKey.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="39" lean-forward="true" selection-start-line="25" selection-start-column="39" selection-end-line="25" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/entity/DormitoryUserKey.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="25" lean-forward="false" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/controller/DormitoryAdmin/DormitoryAdminController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="46" column="86" lean-forward="false" selection-start-line="46" selection-start-column="86" selection-end-line="46" selection-end-column="86" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <marker date="1498674495084" expanded="true" signature="2698:2931" ph="..." />
+            <marker date="1498674495084" expanded="true" signature="3025:3819" ph="..." />
+            <marker date="1498674495084" expanded="true" signature="3128:3788" ph="..." />
+            <marker date="1498674495084" expanded="true" signature="3164:3570" ph="..." />
+            <marker date="1498674495084" expanded="true" signature="3618:3751" ph="..." />
           </folding>
         </state>
       </provider>
