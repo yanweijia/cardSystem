@@ -39,7 +39,6 @@
                                 <rowConstraints>
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -48,17 +47,16 @@
                                  <children>
                                     <Label text="用户编号:" />
                                     <Label text="用户密码:" GridPane.rowIndex="1" />
-                                    <Label text="用户类型:" GridPane.rowIndex="2" />
-                                    <Label text="用户姓名:" GridPane.rowIndex="3" />
-                                    <Label text="所属组织结构:" GridPane.rowIndex="4" />
-                                    <Label text="所属科室/班级:" GridPane.rowIndex="5" />
-                                    <Button defaultButton="true" mnemonicParsing="false" text="确定开卡" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                    <TextField GridPane.columnIndex="1" />
-                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <Label text="用户姓名:" GridPane.rowIndex="2" />
+                                    <Label text="所属组织结构:" GridPane.rowIndex="3" />
+                                    <Label text="所属科室/班级:" GridPane.rowIndex="4" />
+                                    <Button defaultButton="true" mnemonicParsing="false" onAction="#addNewUser" text="确定开卡" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <TextField fx:id="textFieldNewUserID" promptText="请输入用户编号" GridPane.columnIndex="1" />
+                                    <TextField fx:id="textFieldNewUserPW" promptText="请输入用户密码" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="textFieldNewUserName" promptText="请输入用户姓名" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <ChoiceBox fx:id="choiceBoxNewUserOrganization" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <ChoiceBox fx:id="choiceBoxNewUserSection" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Button mnemonicParsing="false" onAction="#resetNewUser" text="重设" GridPane.rowIndex="5" />
                                  </children>
                               </GridPane>
                            </content></Tab>
@@ -75,8 +73,8 @@
                                 </rowConstraints>
                                  <children>
                                     <Label text="用户编号:" />
-                                    <TextField GridPane.columnIndex="1" />
-                                    <Button defaultButton="true" mnemonicParsing="false" text="确定销卡" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="textFieldUserDeleteID" promptText="请输入用户密码" GridPane.columnIndex="1" />
+                                    <Button defaultButton="true" mnemonicParsing="false" onAction="#deleteUser" text="确定销卡" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
                            </content></Tab>
@@ -102,24 +100,24 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <Button defaultButton="true" mnemonicParsing="false" text="查询" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                          <TextField promptText="用户姓名" />
-                                          <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" />
+                                          <Button defaultButton="true" mnemonicParsing="false" onAction="#searchUserInfoAndShow" text="查询" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <TextField fx:id="textFieldSearchInfoName" promptText="用户姓名" />
+                                          <ChoiceBox fx:id="choiceBoxSearchInfoOrganization" prefWidth="150.0" GridPane.columnIndex="1" />
                                           <Label text="用户类型:" GridPane.rowIndex="1" />
-                                          <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <ChoiceBox fx:id="choiceBoxSearchInfoType" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                        </children>
                                     </GridPane>
                                  </top>
                                  <center>
-                                    <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                    <TableView fx:id="tableViewSearchInfo" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                       <columns>
-                                        <TableColumn prefWidth="75.0" text="用户编号" />
-                                        <TableColumn prefWidth="75.0" text="用户类型" />
-                                          <TableColumn prefWidth="75.0" text="用户状态" />
-                                          <TableColumn prefWidth="75.0" text="用户姓名" />
-                                          <TableColumn prefWidth="75.0" text="一卡通余额" />
-                                          <TableColumn prefWidth="75.0" text="组织机构" />
-                                          <TableColumn prefWidth="75.0" text="电话" />
+                                        <TableColumn fx:id="columnUserID" prefWidth="75.0" text="用户编号" />
+                                        <TableColumn fx:id="columnUserType" prefWidth="75.0" text="用户类型" />
+                                          <TableColumn fx:id="columnUserAvailable" prefWidth="75.0" text="用户状态" />
+                                          <TableColumn fx:id="columnUserName" prefWidth="75.0" text="用户姓名" />
+                                          <TableColumn fx:id="columnUserBalance" prefWidth="75.0" text="一卡通余额" />
+                                          <TableColumn fx:id="columnUserOrganization" prefWidth="75.0" text="组织机构" />
+                                          <TableColumn fx:id="columnUserPhone" prefWidth="75.0" text="电话" />
                                       </columns>
                                        <columnResizePolicy>
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -132,12 +130,12 @@
                            <content>
                               <BorderPane prefHeight="200.0" prefWidth="200.0">
                                  <center>
-                                    <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                    <TableView fx:id="tableViewSearchConsume" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                       <columns>
-                                        <TableColumn prefWidth="75.0" text="用户编号" />
-                                        <TableColumn prefWidth="75.0" text="消费时间" />
-                                          <TableColumn prefWidth="75.0" text="消费金额" />
-                                          <TableColumn prefWidth="116.0" text="消费项目名称" />
+                                        <TableColumn fx:id="columnConsumeUserID" prefWidth="75.0" text="用户编号" />
+                                        <TableColumn fx:id="columnConsumeTime" prefWidth="75.0" text="消费时间" />
+                                          <TableColumn fx:id="columnConsumeMoney" prefWidth="75.0" text="消费金额" />
+                                          <TableColumn fx:id="columnConsumeGoodsName" prefWidth="116.0" text="消费项目名称" />
                                       </columns>
                                        <columnResizePolicy>
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -152,12 +150,10 @@
                                       </columnConstraints>
                                       <rowConstraints>
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <Button defaultButton="true" mnemonicParsing="false" text="查询" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                          <TextField promptText="用户编号(支持模糊查询)" />
-                                          <TextField promptText="用户姓名" GridPane.columnIndex="1" />
+                                          <Button defaultButton="true" mnemonicParsing="false" onAction="#searchUserConsume" text="查询" GridPane.columnIndex="1" />
+                                          <TextField fx:id="textFieldSearchConsumeUserID" promptText="用户编号(支持模糊查询)" />
                                        </children>
                                     </GridPane>
                                  </top></BorderPane>

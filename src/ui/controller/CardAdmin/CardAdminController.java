@@ -1,8 +1,28 @@
 package ui.controller.CardAdmin;
 
+import dao.ConsumeMapper;
+import dao.OrganizationMapper;
+import dao.SectionMapper;
+import dao.UserMapper;
+import db.DBAccess;
+import entity.*;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import org.apache.ibatis.session.SqlSession;
+import utils.CodeUtils;
+import utils.FXHelper;
 
+import java.math.BigDecimal;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -10,9 +30,162 @@ import java.util.ResourceBundle;
  */
 public class CardAdminController implements Initializable{
 
+    //新建用户页面
+    @FXML private TextField textFieldNewUserID,textFieldNewUserPW,textFieldNewUserName;
+    @FXML private ChoiceBox<String> choiceBoxNewUserOrganization,choiceBoxNewUserSection;
+
+    //销卡用户页面
+    @FXML private TextField textFieldUserDeleteID;
+
+    //查询统计用户信息
+    @FXML private TextField textFieldSearchInfoName;
+    @FXML private ChoiceBox<String> choiceBoxSearchInfoType,choiceBoxSearchInfoOrganization;
+    @FXML private TableView<User> tableViewSearchInfo;
+    @FXML private TableColumn<User,String> columnUserID,columnUserType,columnUserAvailable,columnUserName,columnUserBalance,columnUserOrganization,columnUserPhone;
+
+    //查询统计用户消费信息
+    @FXML private TextField textFieldSearchConsumeUserID;
+    @FXML private TableView<Consume> tableViewSearchConsume;
+    @FXML private TableColumn<Consume,String> columnConsumeUserID,columnConsumeTime,columnConsumeMoney,columnConsumeGoodsName;
+
+
+    /**
+     * 查询统计用户消费信息
+     */
+    @FXML
+    private void searchUserConsume(){
+        String userID = textFieldSearchConsumeUserID.getText();
+        SqlSession sqlSession = DBAccess.getSqlSession();
+        ConsumeMapper consumeMapper = sqlSession.getMapper(ConsumeMapper.class);
+        ConsumeExample consumeExample = new ConsumeExample();
+        consumeExample.or().andIdLike(userID);
+        List<Consume> consumeList = consumeMapper.selectByExample(consumeExample);
+        if(consumeList.size()==0){
+            FXHelper.showInfoDialog("没有任何匹配的信息!");
+        }
+        tableViewSearchConsume.setItems(FXCollections.observableList(consumeList));
+        sqlSession.close();
+    }
+
+
+    /**
+     * 查询统计用户信息
+     */
+    @FXML
+    private void searchUserInfoAndShow(){
+        String userName = textFieldSearchInfoName.getText();
+        String userOrganization = choiceBoxSearchInfoOrganization.getValue();
+        String userType = choiceBoxSearchInfoType.getValue();
+        SqlSession sqlSession = DBAccess.getSqlSession();
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        OrganizationMapper organizationMapper = sqlSession.getMapper(OrganizationMapper.class);
+        UserExample userExample = new UserExample();
+        UserExample.Criteria criteria = userExample.or();
+        criteria.andNameLike("%"+userName+"%")
+                .andTypeLike("%"+userType+"%");
+        if(!"".equals(userOrganization)){
+            OrganizationExample organizationExample = new OrganizationExample();
+            organizationExample.or().andNameEqualTo(userOrganization);
+            criteria.andOrganizationEqualTo(organizationMapper.selectByExample(organizationExample).get(0).getOrganization_id());
+        }
+        List<User> userList = userMapper.selectByExample(userExample);
+        if(userList.size()==0){
+            FXHelper.showInfoDialog("没有查询到任何匹配到的信息,查询失败!");
+        }
+        tableViewSearchInfo.setItems(FXCollections.observableList(userList));
+
+        sqlSession.close();
+    }
+
+    /**
+     * 销卡功能
+     */
+    @FXML
+    private void deleteUser(){
+        String userID = textFieldUserDeleteID.getText();
+        if("".equals(userID)){
+            FXHelper.showWarningDialog("请输入需要删除的用户编号!");
+            textFieldUserDeleteID.requestFocus();
+            return;
+        }
+        SqlSession sqlSession = DBAccess.getSqlSession();
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        if(userMapper.deleteByPrimaryKey(userID)>0){
+            FXHelper.showInfoDialog("删除成功!");
+            return;
+        }
+
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
+    /**
+     * 重设开卡页相关控件
+     */
+    @FXML
+    private void resetNewUser(){
+        textFieldNewUserName.setText("");
+        textFieldNewUserPW.setText("");
+        textFieldNewUserID.setText("");
+        choiceBoxNewUserOrganization.getSelectionModel().selectFirst();
+        choiceBoxNewUserSection.getSelectionModel().selectFirst();
+    }
+
+
+    /**
+     * 确定开卡(新增用户)
+     */
+    @FXML
+    private void addNewUser(){
+        String userID= textFieldNewUserID.getText();
+        String userPW = textFieldNewUserPW.getText();
+        String userName = textFieldNewUserName.getText();
+        String userOrganization = choiceBoxNewUserOrganization.getValue();
+        String userSection = choiceBoxNewUserSection.getValue();
+        if("".equals(userID)){
+            FXHelper.showWarningDialog("请输入用户卡号(编号)");
+            textFieldNewUserID.requestFocus();
+            return;
+        }
+        if("".equals(userPW)){
+            FXHelper.showWarningDialog("请输入用户密码");
+            textFieldNewUserPW.requestFocus();
+            return;
+        }
+        userPW = CodeUtils.getMD5(userPW);
+        if("".equals(userName)){
+            FXHelper.showWarningDialog("请输入用户姓名!");
+            textFieldNewUserName.requestFocus();
+            return;
+        }
+        SqlSession sqlSession = DBAccess.getSqlSession();
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        OrganizationMapper organizationMapper = sqlSession.getMapper(OrganizationMapper.class);
+        SectionMapper sectionMapper = sqlSession.getMapper(SectionMapper.class);
+        Integer organizationID = null,sectionID = null;
+        if(!"".equals(userOrganization)){
+            OrganizationExample organizationExample = new OrganizationExample();
+            organizationExample.or().andNameEqualTo(userOrganization);
+            organizationID = organizationMapper.selectByExample(organizationExample).get(0).getOrganization_id();
+        }
+        if(!"".equals(userSection)){
+            SectionExample sectionExample = new SectionExample();
+            sectionExample.or().andNameEqualTo(userSection);
+            sectionID = sectionMapper.selectByExample(sectionExample).get(0).getSectionId();
+        }
 
 
 
+
+        User user = new User(userID,userPW,"学生","正常",userName,new BigDecimal("0.00"),organizationID,sectionID,null,null,null);
+        if(userMapper.insertSelective(user)>0){
+            FXHelper.showInfoDialog("添加信息成功!");
+            resetNewUser();
+            return;
+        }
+        sqlSession.commit();
+        sqlSession.close();
+    }
 
 
     /**
@@ -23,5 +196,78 @@ public class CardAdminController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        //用户管理选项卡相关
+        SqlSession sqlSession = DBAccess.getSqlSession();
+        OrganizationMapper organizationMapper = sqlSession.getMapper(OrganizationMapper.class);
+        List<Organization> organizationList = organizationMapper.selectByExample(new OrganizationExample());
+        List<String> newOrganizationList = new ArrayList<>();
+        newOrganizationList.add("");
+        for(Organization org : organizationList){
+            newOrganizationList.add(org.getName());
+        }
+        choiceBoxNewUserOrganization.setItems(FXCollections.observableList(newOrganizationList));
+        if(newOrganizationList.size()>1)
+            choiceBoxNewUserOrganization.setValue(newOrganizationList.get(0));
+        choiceBoxNewUserOrganization.getSelectionModel().selectedIndexProperty().addListener(
+                (ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
+                    //组织机构选择框被选择后修改对应科室/班级选择框
+                    chagneSectionListWhenOrganizationChanged(new_val,choiceBoxNewUserOrganization,choiceBoxNewUserSection);
+                }
+        );
+        chagneSectionListWhenOrganizationChanged(0,choiceBoxNewUserOrganization,choiceBoxNewUserSection); //默认根据第一个组织机构更新Section数据
+        sqlSession.close();
+
+
+        //查询用户信息选项卡
+        choiceBoxSearchInfoType.setItems(FXCollections.observableArrayList("","学生","教学系统管理员","图书管理员","宿舍管理员"));
+        choiceBoxSearchInfoType.getSelectionModel().selectFirst();
+        choiceBoxSearchInfoOrganization.setItems(FXCollections.observableList(newOrganizationList));
+        choiceBoxSearchInfoOrganization.getSelectionModel().selectFirst();
+
+        columnUserID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        columnUserType.setCellValueFactory(new PropertyValueFactory<>("type"));
+        columnUserAvailable.setCellValueFactory(new PropertyValueFactory<>("available"));
+        columnUserName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        columnUserBalance.setCellValueFactory(new PropertyValueFactory<>("balance"));
+        columnUserOrganization.setCellValueFactory(new PropertyValueFactory<>("organization"));
+        columnUserPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+
+        //查询用户消费信息选项卡
+        columnConsumeUserID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        columnConsumeTime.setCellValueFactory(new PropertyValueFactory<>("time"));
+        columnConsumeMoney.setCellValueFactory(new PropertyValueFactory<>("money"));
+        columnConsumeGoodsName.setCellValueFactory(new PropertyValueFactory<>("goodsName"));
+
+    }
+
+
+    /**
+     * 当组织机构被选择后修改科室/班级选择框内容
+     */
+    private void chagneSectionListWhenOrganizationChanged(Number new_val,ChoiceBox<String> choiceBoxOrganization,ChoiceBox<String> choiceBoxSection){
+        if(new_val.intValue()<0)
+            new_val=0;
+        SqlSession sqlSession = DBAccess.getSqlSession();
+        OrganizationMapper organizationMapper = sqlSession.getMapper(OrganizationMapper.class);
+        SectionMapper sectionMapper = sqlSession.getMapper(SectionMapper.class);
+        SectionExample sectionExample = new SectionExample();
+
+        OrganizationExample organizationExample = new OrganizationExample();
+        String organizationName = choiceBoxOrganization.getItems().get(new_val.intValue());
+        if(!"".equals(organizationName)){       //如果组织机构名称不为空,即要选中了组织机构
+            organizationExample.or().andNameEqualTo(organizationName);
+        }
+        Organization organization = organizationMapper.selectByExample(organizationExample).get(0);
+        sectionExample.or().andOrganizationIdEqualTo(organization.getOrganization_id());
+        List<Section> sectionList = sectionMapper.selectByExample(sectionExample);
+        List<String> newSectionList = new ArrayList<>();
+        newSectionList.add("");
+        for(Section section:sectionList){
+            newSectionList.add(section.getName());
+        }
+        choiceBoxSection.setItems(FXCollections.observableList(newSectionList));
+        if(newSectionList.size()!=0)
+            choiceBoxSection.setValue(newSectionList.get(0));
+        sqlSession.close();
     }
 }

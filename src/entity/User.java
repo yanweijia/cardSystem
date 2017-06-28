@@ -62,6 +62,23 @@ public class User implements Serializable {
      */
     private String addr;
 
+    public User() {
+    }
+
+    public User(String id, String password, String type, String available, String name, BigDecimal balance, Integer organization, Integer section, String phone, String email, String addr) {
+        this.id = id;
+        this.password = password;
+        this.type = type;
+        this.available = available;
+        this.name = name;
+        this.balance = balance;
+        this.organization = organization;
+        this.section = section;
+        this.phone = phone;
+        this.email = email;
+        this.addr = addr;
+    }
+
     private static final long serialVersionUID = 1L;
 
     public String getId() {
