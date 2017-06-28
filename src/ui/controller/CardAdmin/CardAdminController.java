@@ -63,7 +63,7 @@ public class CardAdminController implements Initializable{
             return;
         }
         requestModify.setValidate(true);
-        if(requestModifyMapper.updateByPrimaryKey(requestModify)>0){
+        if(requestModifyMapper.deleteByPrimaryKey(requestModify.getId())>0){
             FXHelper.showInfoDialog("驳回成功!");
         }else{
             FXHelper.showWarningDialog("驳回失败!");
@@ -86,7 +86,7 @@ public class CardAdminController implements Initializable{
             return;
         }
         requestModify.setValidate(true);
-        requestModifyMapper.updateByPrimaryKey(requestModify);
+        requestModifyMapper.deleteByPrimaryKey(requestModify.getId());
         User user = userMapper.selectByPrimaryKey(requestModify.getUserId());
         user.setPhone(requestModify.getPhone());
         user.setEmail(requestModify.getEmail());
@@ -184,8 +184,39 @@ public class CardAdminController implements Initializable{
         }
         SqlSession sqlSession = DBAccess.getSqlSession();
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-        if(userMapper.deleteByPrimaryKey(userID)>0){
-            FXHelper.showInfoDialog("删除成功!");
+        BookAccountMapper bookAccountMapper = sqlSession.getMapper(BookAccountMapper.class);
+        DormitoryUserMapper dormitoryUserMapper = sqlSession.getMapper(DormitoryUserMapper.class);
+        //判断用户是否还有未归还图书,是否还有余额,是否未退宿舍
+        User user = userMapper.selectByPrimaryKey(userID);
+        if(user==null || !user.getAvailable().equals("正常")){
+            FXHelper.showWarningDialog("不存在该用户或已经销户,无法销户!");
+        }
+
+
+        if(user!=null){
+            if(user.getBalance().floatValue()!=0.00){
+                FXHelper.showWarningDialog("抱歉,还有未消费余额,请先将该余额消费完成或退回才可销卡!");
+                return;
+            }
+        }
+        BookAccount bookAccount = bookAccountMapper.selectByPrimaryKey(userID);
+        if (bookAccount != null) {
+            if(bookAccount.getBorrowedNum()!=0){
+                FXHelper.showWarningDialog("该用户还有未归还图书,无法销卡!");
+                return;
+            }
+        }
+        DormitoryUserExample dormitoryUserExample = new DormitoryUserExample();
+        dormitoryUserExample.or().andUser_idEqualTo(userID);
+        List<DormitoryUser> dormitoryUserList = dormitoryUserMapper.selectByExample(dormitoryUserExample);
+        if(dormitoryUserList.size()!=0){
+            FXHelper.showWarningDialog("抱歉,该用户还有未退还的宿舍,无法销卡!");
+            return;
+        }
+
+        user.setAvailable("正常销卡");
+        if(userMapper.updateByPrimaryKey(user)>0){
+            FXHelper.showInfoDialog("销卡(标记)成功!");
             return;
         }
 
