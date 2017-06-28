@@ -18,6 +18,14 @@ public class DormitoryKey implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public DormitoryKey() {
+    }
+
+    public DormitoryKey(String buildingNo, String dormitoryNo) {
+        this.buildingNo = buildingNo;
+        this.dormitoryNo = dormitoryNo;
+    }
+
     public String getBuildingNo() {
         return buildingNo;
     }

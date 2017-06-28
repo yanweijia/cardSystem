@@ -21,7 +21,7 @@ public class test extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXHelper.newStage(getClass(),"/resources/fxml/CardAdmin.fxml","一卡通管理员测试");
+        FXHelper.newStage(getClass(),"/resources/fxml/DormitoryAdmin.fxml","宿舍管理员测试");
     }
 
     public static void main(String[] args) {

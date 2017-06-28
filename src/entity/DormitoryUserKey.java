@@ -23,6 +23,7 @@ public class DormitoryUserKey implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+
     public String getBuilding_no() {
         return building_no;
     }
