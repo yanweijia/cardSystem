@@ -283,10 +283,9 @@ public class CardAdminController implements Initializable{
 
 
         User user = new User(userID,userPW,"学生","正常",userName,new BigDecimal("0.00"),organizationID,sectionID,null,null,null);
-        if(userMapper.insertSelective(user)>0){
+        if(userMapper.insert(user)>0){
             FXHelper.showInfoDialog("添加信息成功!");
             resetNewUser();
-            return;
         }
         sqlSession.commit();
         sqlSession.close();

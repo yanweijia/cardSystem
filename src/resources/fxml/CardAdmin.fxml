@@ -73,7 +73,7 @@
                                 </rowConstraints>
                                  <children>
                                     <Label text="用户编号:" />
-                                    <TextField fx:id="textFieldUserDeleteID" promptText="请输入用户密码" GridPane.columnIndex="1" />
+                                    <TextField fx:id="textFieldUserDeleteID" promptText="请输入用户编号" GridPane.columnIndex="1" />
                                     <Button defaultButton="true" mnemonicParsing="false" onAction="#deleteUser" text="确定销卡" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
