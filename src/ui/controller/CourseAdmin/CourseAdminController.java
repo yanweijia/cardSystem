@@ -5,7 +5,6 @@ import dao.CourseMapper;
 import dao.OrganizationMapper;
 import db.DBAccess;
 import entity.*;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

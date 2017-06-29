@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.CourseChoiceMapper">
   <resultMap id="BaseResultMap" type="entity.CourseChoice">
-    <id column="user_id" jdbcType="VARCHAR" property="userId" />
-    <id column="course_id" jdbcType="INTEGER" property="courseId" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="course_id" jdbcType="INTEGER" property="courseId" />
     <result column="grade" jdbcType="DECIMAL" property="grade" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -89,18 +89,6 @@
       </if>
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="entity.CourseChoiceKey" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from course_choice
-    where user_id = #{userId,jdbcType=VARCHAR}
-      and course_id = #{courseId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="entity.CourseChoiceKey">
-    delete from course_choice
-    where user_id = #{userId,jdbcType=VARCHAR}
-      and course_id = #{courseId,jdbcType=INTEGER}
-  </delete>
   <delete id="deleteByExample" parameterType="entity.CourseChoiceExample">
     delete from course_choice
     <if test="_parameter != null">
@@ -169,21 +157,5 @@
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="entity.CourseChoice">
-    update course_choice
-    <set>
-      <if test="grade != null">
-        grade = #{grade,jdbcType=DECIMAL},
-      </if>
-    </set>
-    where user_id = #{userId,jdbcType=VARCHAR}
-      and course_id = #{courseId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="entity.CourseChoice">
-    update course_choice
-    set grade = #{grade,jdbcType=DECIMAL}
-    where user_id = #{userId,jdbcType=VARCHAR}
-      and course_id = #{courseId,jdbcType=INTEGER}
   </update>
 </mapper>

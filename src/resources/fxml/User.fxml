@@ -1,14 +1,508 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ui.controller.User.UserController"
-            prefHeight="400.0" prefWidth="600.0">
+<BorderPane prefHeight="440.0" prefWidth="608.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.User.UserController">
+   <top>
+      <Label text="校园一卡通系统" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Microsoft YaHei Bold" size="35.0" />
+         </font>
+      </Label>
+   </top>
+   <center>
+      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab text="账户信息">
+               <content>
+                  <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab text="查询账户余额">
+                           <content>
+                              <GridPane>
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Button defaultButton="true" mnemonicParsing="false" text="刷新" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="Microsoft YaHei Bold" size="19.0" />
+                                       </font>
+                                    </Button>
+                                    <Label text="余额:" />
+                                    <TextField editable="false" promptText="余额" text="0.00" GridPane.columnIndex="1" />
+                                 </children>
+                              </GridPane>
+                           </content></Tab>
+                      <Tab text="消费查询/今日消费">
+                           <content>
+                              <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                 <top>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Button defaultButton="true" mnemonicParsing="false" text="查询消费" GridPane.columnIndex="1" />
+                                          <CheckBox mnemonicParsing="false" text="只查看今日消费" />
+                                       </children>
+                                    </GridPane>
+                                 </top>
+                                 <center>
+                                    <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                      <columns>
+                                        <TableColumn prefWidth="75.0" text="用户编号" />
+                                        <TableColumn prefWidth="75.0" text="消费时间" />
+                                          <TableColumn prefWidth="75.0" text="消费金额" />
+                                          <TableColumn prefWidth="75.0" text="消费商品名称" />
+                                      </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                    </TableView>
+                                 </center>
+                              </BorderPane>
+                           </content></Tab>
+                        <Tab text="最近充值情况">
+                           <content>
+                              <GridPane>
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label text="充值时间:" />
+                                    <Label text="充值金额:" GridPane.rowIndex="1" />
+                                    <Label text="银行卡号" GridPane.rowIndex="2" />
+                                    <Button defaultButton="true" mnemonicParsing="false" text="刷新" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField editable="false" promptText="充值时间" GridPane.columnIndex="1" />
+                                    <TextField editable="false" promptText="充值金额" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField editable="false" promptText="充值所用的银行卡号" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                 </children>
+                              </GridPane>
+                           </content></Tab>
+                    </tabs>
+                  </TabPane>
+               </content></Tab>
+          <Tab text="安全/个人信息">
+               <content>
+                  <Label text="请退出系统后下次登录直接勾选信息维护,功能有:①修改个人信息②修改登录密码" textFill="#8d8d8d" wrapText="true">
+                     <font>
+                        <Font name="Microsoft YaHei Bold" size="31.0" />
+                     </font>
+                  </Label>
+               </content></Tab>
+            <Tab text="消费">
+               <content>
+                  <GridPane>
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="商品名称:" />
+                        <Label text="金额" GridPane.rowIndex="1" />
+                        <TextField promptText="请输入商品名称" GridPane.columnIndex="1" />
+                        <TextField promptText="请输入消费金额" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button defaultButton="true" mnemonicParsing="false" text="确定消费" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                     </children>
+                  </GridPane>
+               </content></Tab>
+            <Tab text="网上充值一卡通余额">
+               <content>
+                  <GridPane>
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="银行卡号:" />
+                        <TextField promptText="请输入银行卡号" GridPane.columnIndex="1" />
+                        <Label text="金额:" GridPane.rowIndex="1" />
+                        <TextField promptText="请输入充值金额" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button defaultButton="true" mnemonicParsing="false" text="确认充值" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                     </children>
+                  </GridPane>
+               </content></Tab>
+            <Tab text="图书管理系统">
+               <content>
+                  <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab text="借阅账号管理">
+                           <content>
+                              <GridPane>
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Button mnemonicParsing="false" text="申请账号/查看账号信息" GridPane.columnIndex="1" />
+                                    <Button mnemonicParsing="false" text="注销账号" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                 </children>
+                              </GridPane>
+                           </content></Tab>
+                      <Tab text="查询馆藏图书/借阅">
+                          <content>
+                              <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                  <top>
+                                      <GridPane BorderPane.alignment="CENTER">
+                                          <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          </columnConstraints>
+                                          <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          </rowConstraints>
+                                          <children>
+                                              <TextField fx:id="textFieldSearchBookName" promptText="请输入图书名称" />
+                                              <TextField fx:id="textFieldSearchBookAuthor" promptText="请输入作者" GridPane.columnIndex="1" />
+                                              <ChoiceBox fx:id="choiceBoxSearchBookType" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                              <TextField fx:id="textFieldSearchBookPublisher" promptText="请输入出版社名称" GridPane.rowIndex="1" />
+                                              <Button defaultButton="true" mnemonicParsing="false" onAction="#SearchBooksAndShow" text="查询" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          </children>
+                                      </GridPane>
+                                  </top>
+                                  <bottom>
+                                      <GridPane BorderPane.alignment="CENTER">
+                                          <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          </columnConstraints>
+                                          <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          </rowConstraints>
+                                          <children>
+                                              <Button defaultButton="true" mnemonicParsing="false" onAction="#borrowSelectedBook" text="借阅选中图书" GridPane.columnIndex="1" />
+                                          </children>
+                                      </GridPane>
+                                  </bottom>
+                                  <center>
+                                      <TableView fx:id="tableViewBooks" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                          <columns>
+                                              <TableColumn fx:id="columnBookID" prefWidth="70.0" text="编号" />
+                                              <TableColumn fx:id="columnBookName" prefWidth="94.0" text="名称" />
+                                              <TableColumn fx:id="columnBookType" prefWidth="94.0" text="类别" />
+                                              <TableColumn fx:id="columnBookAuthor" prefWidth="94.0" text="作者" />
+                                              <TableColumn fx:id="columnBookPublisher" prefWidth="94.0" text="出版社" />
+                                              <TableColumn fx:id="columnBookPubDate" prefWidth="94.0" text="出版日期" />
+                                              <TableColumn fx:id="columnBookPrice" prefWidth="94.0" text="价格" />
+                                              <TableColumn fx:id="columnBookRack" prefWidth="94.0" text="书架位置" />
+                                              <TableColumn fx:id="columnBookAmount" prefWidth="94.0" text="数量" />
+                                              <TableColumn fx:id="columnBookAvailableNum" prefWidth="94.0" text="可借阅数" />
+                                          </columns>
+                                          <columnResizePolicy>
+                                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                          </columnResizePolicy>
+                                      </TableView>
+                                  </center></BorderPane>
+                          </content>
+                      </Tab>
+                        <Tab text="借阅查询(打印)/归还">
+                           <content>
+                              <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                 <top>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Button defaultButton="true" mnemonicParsing="false" text="刷新" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                 </top>
+                                 <center>
+                                    <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                      <columns>
+                                        <TableColumn prefWidth="75.0" text="书籍编号" />
+                                        <TableColumn prefWidth="75.0" text="借书时间" />
+                                          <TableColumn prefWidth="75.0" text="应还时间" />
+                                      </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                    </TableView>
+                                 </center>
+                                  <bottom>
+                                      <GridPane BorderPane.alignment="CENTER">
+                                          <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          </columnConstraints>
+                                          <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          </rowConstraints>
+                                          <children>
+                                              <Button defaultButton="true" mnemonicParsing="false" text="归还选中图书" GridPane.columnIndex="1" />
+                                          </children>
+                                      </GridPane>
+                                  </bottom>
+                              </BorderPane>
+                           </content></Tab>
+                    </tabs>
+                  </TabPane>
+               </content></Tab>
+            <Tab text="教学管理系统">
+               <content>
+                  <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab text="选课">
+                           <content>
+                              <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                 <top>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Button defaultButton="true" mnemonicParsing="false" text="查询所有课程" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                 </top>
+                                 <center>
+                                    <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                      <columns>
+                                        <TableColumn prefWidth="75.0" text="课程编号" />
+                                        <TableColumn prefWidth="75.0" text="课程名称" />
+                                          <TableColumn prefWidth="75.0" text="开始时间" />
+                                          <TableColumn prefWidth="75.0" text="结束时间" />
+                                          <TableColumn prefWidth="75.0" text="所属部门" />
+                                      </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                    </TableView>
+                                 </center>
+                                 <bottom>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Button defaultButton="true" mnemonicParsing="false" text="选修选中课程" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                 </bottom>
+                              </BorderPane>
+                           </content></Tab>
+                        <Tab text="退课">
+                            <content>
+                                <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                    <top>
+                                        <GridPane BorderPane.alignment="CENTER">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                            <children>
+                                                <Button defaultButton="true" mnemonicParsing="false" text="查询所有课程" GridPane.columnIndex="1" />
+                                            </children>
+                                        </GridPane>
+                                    </top>
+                                    <center>
+                                        <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                            <columns>
+                                                <TableColumn prefWidth="75.0" text="课程编号" />
+                                                <TableColumn prefWidth="75.0" text="课程名称" />
+                                                <TableColumn prefWidth="75.0" text="开始时间" />
+                                                <TableColumn prefWidth="75.0" text="结束时间" />
+                                                <TableColumn prefWidth="75.0" text="所属部门" />
+                                            </columns>
+                                            <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                            </columnResizePolicy>
+                                        </TableView>
+                                    </center>
+                                    <bottom>
+                                        <GridPane BorderPane.alignment="CENTER">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                            <children>
+                                                <Button defaultButton="true" mnemonicParsing="false" text="选中课程退课" GridPane.columnIndex="1" />
+                                            </children>
+                                        </GridPane>
+                                    </bottom>
+                                </BorderPane>
+                            </content>
+                        </Tab>
+                      <Tab text="查询个人成绩">
+                           <content>
+                              <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                 <top>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Button defaultButton="true" mnemonicParsing="false" text="查询所有课程成绩" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                 </top>
+                                 <center>
+                                    <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                      <columns>
+                                        <TableColumn prefWidth="75.0" text="课程编号" />
+                                        <TableColumn prefWidth="75.0" text="成绩" />
+                                      </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                    </TableView>
+                                 </center>
+                              </BorderPane>
+                           </content></Tab>
+                    </tabs>
+                  </TabPane>
+               </content></Tab>
+            <Tab text="宿舍管理系统">
+               <content>
+                  <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab text="住宿申请">
+                           <content>
+                              <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                 <top>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Button defaultButton="true" mnemonicParsing="false" text="刷新宿舍情况" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                 </top>
+                                 <bottom>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Button defaultButton="true" mnemonicParsing="false" text="申请选中宿舍" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                 </bottom>
+                                 <center>
+                                    <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                      <columns>
+                                        <TableColumn prefWidth="75.0" text="楼号" />
+                                        <TableColumn prefWidth="75.0" text="宿舍号" />
+                                          <TableColumn prefWidth="75.0" text="可住人数" />
+                                          <TableColumn prefWidth="75.0" text="已住人数" />
+                                      </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                    </TableView>
+                                 </center>
+                              </BorderPane>
+                           </content></Tab>
+                      <Tab text="查看房间">
+                           <content>
+                              <GridPane>
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label text="楼号:" />
+                                    <Label text="宿舍号:" GridPane.rowIndex="1" />
+                                    <TextField editable="false" GridPane.columnIndex="1" />
+                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Button defaultButton="true" mnemonicParsing="false" text="刷新" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Label text="床号:" GridPane.rowIndex="2" />
+                                    <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                 </children>
+                              </GridPane>
+                           </content></Tab>
+                    </tabs>
+                  </TabPane>
+               </content></Tab>
+        </tabs>
+      </TabPane>
+   </center>
+   <bottom>
 
+   </bottom>
 </BorderPane>
