@@ -1,16 +1,15 @@
 package ui.controller.User;
 
+import dao.BookAccountMapper;
 import dao.ConsumeMapper;
+import dao.SectionMapper;
 import dao.UserMapper;
 import db.DBAccess;
 import entity.*;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.apache.ibatis.session.SqlSession;
 import utils.FXHelper;
@@ -19,6 +18,7 @@ import java.math.BigDecimal;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
@@ -44,6 +44,73 @@ public class UserController implements Initializable{
 
 
     /**
+     * 注销图书馆账号
+     */
+    @FXML
+    private void destoryBookAccount(){
+        SqlSession sqlSession = DBAccess.getSqlSession();
+        BookAccountMapper bookAccountMapper = sqlSession.getMapper(BookAccountMapper.class);
+        BookAccount bookAccount = bookAccountMapper.selectByPrimaryKey(CurrentUser.userID);
+
+        Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION,"没有图书账户,是否创建?",ButtonType.YES, ButtonType.CANCEL).showAndWait();
+        if(buttonType.get().getButtonData().equals(ButtonBar.ButtonData.NO)){
+            return;
+        }
+
+
+        if(bookAccount==null){
+            FXHelper.showWarningDialog("抱歉,该用户未注册,无法注销!");
+            return;
+        }
+        if(bookAccount.getBorrowedNum()!=0){
+            FXHelper.showWarningDialog("抱歉,该用户还有未归还图书,无法注销!");
+            return;
+        }
+        bookAccountMapper.deleteByPrimaryKey(bookAccount.getId());
+        FXHelper.showInfoDialog("注销(删除)成功!");
+
+
+
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
+
+
+
+    /**
+     * 申请图书馆账号/查看账号信息
+     */
+    @FXML
+    private void viewLibraryAccount(){
+        SqlSession sqlSession = DBAccess.getSqlSession();
+        BookAccountMapper bookAccountMapper = sqlSession.getMapper(BookAccountMapper.class);
+        BookAccountExample bookAccountExample = new BookAccountExample();
+        bookAccountExample.or().andIdEqualTo(CurrentUser.userID);
+        List<BookAccount> bookAccountList = bookAccountMapper.selectByExample(bookAccountExample);
+        if(bookAccountList.size()==0){
+            Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION,"没有图书账户,是否创建?",ButtonType.YES, ButtonType.CANCEL).showAndWait();
+            if(buttonType.get().getButtonData().equals(ButtonBar.ButtonData.YES)){
+                BookAccount bookAccount = new BookAccount();
+                bookAccount.setBorrowedNum((short)0);
+                bookAccount.setId(CurrentUser.userID);
+                bookAccount.setMaxBorrowNum((short)7);
+                bookAccount.setRegisterDate(new Date());
+                bookAccountMapper.insertSelective(bookAccount);
+                FXHelper.showInfoDialog("新建用户成功!");
+            }else{
+                return;
+            }
+            BookAccount bookAccount = bookAccountMapper.selectByPrimaryKey(CurrentUser.userID);
+            if(bookAccount!=null){
+                FXHelper.showInfoDialog("最大借阅数:"+bookAccount.getMaxBorrowNum()+"\n已借阅数:"+bookAccount.getBorrowedNum()+"\n注册日期:"+bookAccount.getRegisterDate());
+            }
+        }
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
+    /**
      * 充值一卡通
      */
     @FXML
@@ -53,6 +120,24 @@ public class UserController implements Initializable{
         if("".equals(card)|| "".equals(money)){
             FXHelper.showWarningDialog("请输入用户编号");
         }
+        SqlSession sqlSession = DBAccess.getSqlSession();
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        ConsumeMapper consumeMapper = sqlSession.getMapper(ConsumeMapper.class);
+        User user = userMapper.selectByPrimaryKey(CurrentUser.userID);
+        user.setBalance(new BigDecimal(user.getBalance().doubleValue()+new BigDecimal(money).doubleValue()));
+        userMapper.updateByPrimaryKeySelective(user);
+
+        Consume consume = new Consume();
+        consume.setTime(new Date());
+        consume.setId(CurrentUser.userID);
+        consume.setMoney(new BigDecimal(money).multiply(new BigDecimal("-1")));
+        consume.setGoodsName("充值卡号:"+card);
+        consumeMapper.insertSelective(consume);
+
+        FXHelper.showInfoDialog("充值成功!");
+
+        sqlSession.commit();
+        sqlSession.close();
     }
 
     /**

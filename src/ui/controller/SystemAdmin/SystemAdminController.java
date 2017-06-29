@@ -235,8 +235,9 @@ public class SystemAdminController implements Initializable {
     @FXML
     private void queryOrganizationBy(){
         Integer organizationID = 0;
+        String organizationIDStr = textFieldOrganizationID.getText();
         String organizationName = textFieldOrganizationName.getText();
-        if(!"".equals(organizationName)) {
+        if(!"".equals(organizationIDStr)) {
             try {
                 organizationID = Integer.parseInt(textFieldOrganizationID.getText());
             } catch (Exception e) {
