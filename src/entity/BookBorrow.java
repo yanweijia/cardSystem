@@ -42,6 +42,19 @@ public class BookBorrow implements Serializable {
      */
     private Date backtime;
 
+    public BookBorrow(Integer id, String userId, Integer bookId, Date borrowtime, Date sBacktime, Boolean ifback, Date backtime) {
+        this.id = id;
+        this.userId = userId;
+        this.bookId = bookId;
+        this.borrowtime = borrowtime;
+        this.sBacktime = sBacktime;
+        this.ifback = ifback;
+        this.backtime = backtime;
+    }
+
+    public BookBorrow() {
+    }
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {

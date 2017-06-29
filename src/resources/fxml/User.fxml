@@ -255,12 +255,12 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <Button defaultButton="true" mnemonicParsing="false" text="刷新" GridPane.columnIndex="1" />
+                                          <Button defaultButton="true" mnemonicParsing="false" onAction="#refreshBorrowBooks" text="刷新" GridPane.columnIndex="1" />
                                        </children>
                                     </GridPane>
                                  </top>
                                  <center>
-                                    <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                    <TableView fx:id="tableViewBookBorrow" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                       <columns>
                                         <TableColumn prefWidth="75.0" text="书籍编号" />
                                         <TableColumn prefWidth="75.0" text="借书时间" />
@@ -281,7 +281,7 @@
                                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                           </rowConstraints>
                                           <children>
-                                              <Button defaultButton="true" mnemonicParsing="false" text="归还选中图书" GridPane.columnIndex="1" />
+                                              <Button defaultButton="true" mnemonicParsing="false" onAction="#returnBorrowedBook" text="归还选中图书" GridPane.columnIndex="1" />
                                           </children>
                                       </GridPane>
                                   </bottom>

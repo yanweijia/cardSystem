@@ -1,12 +1,10 @@
 package ui.controller.User;
 
-import dao.BookAccountMapper;
-import dao.ConsumeMapper;
-import dao.SectionMapper;
-import dao.UserMapper;
+import dao.*;
 import db.DBAccess;
 import entity.*;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -42,6 +40,153 @@ public class UserController implements Initializable{
     //网上充值一卡通选项卡相关
     @FXML private TextField textFieldTopup_card,textFieldTopup_money;
 
+    //图书查询
+    @FXML private TextField textFieldSearchBookName,textFieldSearchBookAuthor,textFieldSearchBookPublisher;
+    @FXML private ChoiceBox<String> choiceBoxSearchBookType;
+    @FXML private TableView<BookInfo> tableViewBooks;
+    @FXML private TableColumn<BookInfo,String> columnBookID,columnBookName,columnBookType,columnBookAuthor,columnBookPublisher,columnBookPubDate,columnBookPrice,columnBookRack,columnBookAmount,columnBookAvailableNum;
+
+
+    //图书借阅查询
+    @FXML private TableView<BookBorrow> tableViewBookBorrow;
+    @FXML private TableColumn<BookBorrow,String> columnBorrowedBookID,columnBorrowedTime,columnBorrowedSBacktime;
+
+
+    /**
+     * 归还已借阅图书
+     */
+    @FXML
+    private void returnBorrowedBook(){
+        BookBorrow bookBorrow = tableViewBookBorrow.getSelectionModel().getSelectedItem();
+        if(bookBorrow==null){
+            FXHelper.showWarningDialog("没有选中任何数据我该归还什么呢?");
+            return;
+        }
+        if(bookBorrow.getIfback()){
+            FXHelper.showInfoDialog("这本书都还了唉,我该怎么为你再还一次?");
+            return;
+        }
+        bookBorrow.setIfback(true);
+        bookBorrow.setBacktime(new Date());
+
+        SqlSession sqlSession = DBAccess.getSqlSession();
+        BookAccountMapper bookAccountMapper = sqlSession.getMapper(BookAccountMapper.class);
+        BookBorrowMapper bookBorrowMapper = sqlSession.getMapper(BookBorrowMapper.class);
+        BookInfoMapper bookInfoMapper = sqlSession.getMapper(BookInfoMapper.class);
+
+        bookBorrowMapper.updateByPrimaryKey(bookBorrow);
+
+        BookAccount bookAccount = bookAccountMapper.selectByPrimaryKey(bookBorrow.getUserId());
+        bookAccount.setBorrowedNum((short)(bookAccount.getBorrowedNum() - 1));
+        bookAccountMapper.updateByPrimaryKey(bookAccount);
+
+        BookInfo bookInfo = bookInfoMapper.selectByPrimaryKey(bookBorrow.getBookId());
+        bookInfo.setRemainNum((short)(bookInfo.getRemainNum()+1));
+        bookInfoMapper.updateByPrimaryKey(bookInfo);
+
+        FXHelper.showInfoDialog("归还成功!");
+        refreshBorrowBooks();
+
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
+
+    /**
+     * 刷新已借阅图书
+     */
+    @FXML
+    private void refreshBorrowBooks(){
+        SqlSession sqlSession = DBAccess.getSqlSession();
+        BookBorrowMapper bookBorrowMapper = sqlSession.getMapper(BookBorrowMapper.class);
+        BookBorrowExample bookBorrowExample = new BookBorrowExample();
+        bookBorrowExample.or().andUserIdEqualTo(CurrentUser.userID)
+                .andIfbackEqualTo(false);
+        List<BookBorrow> bookBorrowList = bookBorrowMapper.selectByExample(bookBorrowExample);
+        if (bookBorrowList.size()==0){
+            FXHelper.showInfoDialog("抱歉,未查询到任何信息!");
+        }
+        tableViewBookBorrow.setItems(FXCollections.observableList(bookBorrowList));
+        sqlSession.close();
+    }
+
+    /**
+     * 借阅选中图书
+     */
+    @FXML
+    private void borrowSelectedBook(){
+        BookInfo bookInfo = tableViewBooks.getSelectionModel().getSelectedItem();
+        if(bookInfo==null){
+            FXHelper.showWarningDialog("抱歉,您没有选中任何选项,无法借阅!");
+            return;
+        }
+        Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION,"确认借阅?",ButtonType.YES, ButtonType.CANCEL).showAndWait();
+        if(buttonType.get().getButtonData().equals(ButtonBar.ButtonData.YES)){
+            SqlSession sqlSession = DBAccess.getSqlSession();
+            BookInfoMapper bookInfoMapper = sqlSession.getMapper(BookInfoMapper.class);
+            BookAccountMapper bookAccountMapper = sqlSession.getMapper(BookAccountMapper.class);
+            if(bookInfo.getRemainNum()==0){
+                FXHelper.showInfoDialog("书籍已经被借阅完,无法借阅");
+                return;
+            }
+            BookAccount bookAccount = bookAccountMapper.selectByPrimaryKey(CurrentUser.userID);
+            if(bookAccount.getBorrowedNum()==bookAccount.getMaxBorrowNum()){
+                FXHelper.showInfoDialog("抱歉,您的可借阅书籍数量为0,无法借阅");
+                return;
+            }
+            bookAccount.setBorrowedNum((short)(bookAccount.getBorrowedNum()+1));
+            bookAccountMapper.updateByPrimaryKey(bookAccount);
+            bookInfo.setRemainNum((short)(bookInfo.getRemainNum()+1));
+            bookInfoMapper.updateByPrimaryKey(bookInfo);
+
+            //图书借阅表
+            BookBorrowMapper bookBorrowMapper = sqlSession.getMapper(BookBorrowMapper.class);
+            BookBorrow bookBorrow = new BookBorrow(null,CurrentUser.userID,bookInfo.getBookId(),new Date(),new Date(System.currentTimeMillis()+(30L*24L*60L*60L*1000L)),false,null);
+            bookBorrowMapper.insertSelective(bookBorrow);
+
+
+
+            bookInfoMapper.deleteByPrimaryKey(bookInfo.getBookId());
+
+
+
+
+
+            FXHelper.showInfoDialog("借阅成功!");
+            sqlSession.commit();
+            sqlSession.close();
+        }
+    }
+
+
+
+
+    /**
+     * 查询图书并显示
+     */
+    @FXML
+    private void SearchBooksAndShow(){
+        String bookName = textFieldSearchBookName.getText();
+        String bookAuthor = textFieldSearchBookAuthor.getText();
+        String bookPublisher = textFieldSearchBookPublisher.getText();
+        String bookType = choiceBoxSearchBookType.getValue();
+        SqlSession sqlSession = DBAccess.getSqlSession();
+        BookInfoMapper bookInfoMapper = sqlSession.getMapper(BookInfoMapper.class);
+        BookInfoExample bookInfoExample = new BookInfoExample();
+        bookInfoExample.or().andNameLike("%"+bookName+"%")
+                .andAuthorLike("%"+bookAuthor+"%")
+                .andPublisherLike("%"+bookPublisher+"%")
+                .andTypeLike("%"+bookType+"%");
+        List<BookInfo> bookInfoList = bookInfoMapper.selectByExample(bookInfoExample);
+
+        if(bookInfoList.size()==0)
+            FXHelper.showInfoDialog("很抱歉,没有匹配到任何结果!\n请修改查询关键词后再试!\n温馨提示:支持模糊查询。");
+
+
+        tableViewBooks.setItems(FXCollections.observableList(bookInfoList));
+
+        sqlSession.close();
+    }
 
     /**
      * 注销图书馆账号
@@ -232,20 +377,7 @@ public class UserController implements Initializable{
         sqlSession.close();
     }
 
-    /**
-     * 查询图书并显示
-     */
-    @FXML
-    private void SearchBooksAndShow(){
 
-    }
-    /**
-     * 借阅选中图书
-     */
-    @FXML
-    private void borrowSelectedBook(){
-
-    }
 
 
 
@@ -263,5 +395,24 @@ public class UserController implements Initializable{
         columeConsumeMoney.setCellValueFactory(new PropertyValueFactory<>("money"));
         columnConsumeGoodsName.setCellValueFactory(new PropertyValueFactory<>("goodsName"));
 
+        //图书查询
+        ObservableList<String> observableList = FXCollections.observableArrayList("","A马列主义毛邓思想","B哲学","C社会科学总论","D政治、法律","E军事","F经济","G文化、科学、教育、体育","H语言、文字","I文学","J艺术","K历史、地理","N自然科学总论","O数理科学和化学","P天文学、地球科学","Q生物科学","R医药、卫生","S农业科学","T工业技术","U交通运输","V航空、航天","X环境科学、安全科学","Z综合性图书");
+        choiceBoxSearchBookType.setItems(observableList);
+        choiceBoxSearchBookType.getSelectionModel().selectFirst();
+        columnBookID.setCellValueFactory(new PropertyValueFactory<>("bookId"));
+        columnBookName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        columnBookType.setCellValueFactory(new PropertyValueFactory<>("type"));
+        columnBookAuthor.setCellValueFactory(new PropertyValueFactory<>("author"));
+        columnBookPublisher.setCellValueFactory(new PropertyValueFactory<>("publisher"));
+        columnBookPubDate.setCellValueFactory(new PropertyValueFactory<>("pubDate"));
+        columnBookPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+        columnBookRack.setCellValueFactory(new PropertyValueFactory<>("bookrack"));
+        columnBookAmount.setCellValueFactory(new PropertyValueFactory<>("totalNum"));
+        columnBookAvailableNum.setCellValueFactory(new PropertyValueFactory<>("remainNum"));
+
+        //已借阅的图书
+        columnBorrowedBookID.setCellValueFactory(new PropertyValueFactory<>("bookId"));
+        columnBorrowedTime.setCellValueFactory(new PropertyValueFactory<>("borrowtime"));
+        columnBorrowedSBacktime.setCellValueFactory(new PropertyValueFactory<>("sBacktime"));
     }
 }
