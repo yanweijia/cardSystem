@@ -262,9 +262,9 @@
                                  <center>
                                     <TableView fx:id="tableViewBookBorrow" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                       <columns>
-                                        <TableColumn prefWidth="75.0" text="书籍编号" />
-                                        <TableColumn prefWidth="75.0" text="借书时间" />
-                                          <TableColumn prefWidth="75.0" text="应还时间" />
+                                        <TableColumn fx:id="columnBorrowedBookID" prefWidth="75.0" text="书籍编号" />
+                                        <TableColumn fx:id="columnBorrowedTime" prefWidth="75.0" text="借书时间" />
+                                          <TableColumn fx:id="columnBorrowedSBacktime" prefWidth="75.0" text="应还时间" />
                                       </columns>
                                        <columnResizePolicy>
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -307,7 +307,7 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <Button defaultButton="true" mnemonicParsing="false" text="查询所有课程" GridPane.columnIndex="1" />
+                                          <Button defaultButton="true" mnemonicParsing="false" onAction="#searchCourse" text="查询所有课程" GridPane.columnIndex="1" />
                                        </children>
                                     </GridPane>
                                  </top>
@@ -335,7 +335,7 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <Button defaultButton="true" mnemonicParsing="false" text="选修选中课程" GridPane.columnIndex="1" />
+                                          <Button defaultButton="true" mnemonicParsing="false" onAction="#selectCourse" text="选修选中课程" GridPane.columnIndex="1" />
                                        </children>
                                     </GridPane>
                                  </bottom>

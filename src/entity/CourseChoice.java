@@ -22,6 +22,15 @@ public class CourseChoice implements Serializable {
      */
     private BigDecimal grade;
 
+    public CourseChoice() {
+    }
+
+    public CourseChoice(String userId, Integer courseId, BigDecimal grade) {
+        this.userId = userId;
+        this.courseId = courseId;
+        this.grade = grade;
+    }
+
     private static final long serialVersionUID = 1L;
 
     public String getUserId() {

@@ -51,6 +51,52 @@ public class UserController implements Initializable{
     @FXML private TableView<BookBorrow> tableViewBookBorrow;
     @FXML private TableColumn<BookBorrow,String> columnBorrowedBookID,columnBorrowedTime,columnBorrowedSBacktime;
 
+    //课程查询选项卡相关
+    @FXML private TableView<Course> tableViewCourse;
+    @FXML private TableColumn<Course,String> columnCourseID,columnCourseName,columnCourseStartDate,columnCourseEndDate,colmnCourseOrganization;
+
+
+    /**
+     * 选修选中课程
+     */
+    @FXML void selectCourse(){
+        SqlSession sqlSession = DBAccess.getSqlSession();
+        Course course = tableViewCourse.getSelectionModel().getSelectedItem();
+        if(course==null){
+            FXHelper.showInfoDialog("还没选中任何课程,无法选课!");
+            return;
+        }
+        CourseChoiceMapper courseChoiceMapper = sqlSession.getMapper(CourseChoiceMapper.class);
+        CourseChoice courseChoice = new CourseChoice(CurrentUser.userID,course.getCourseId(),null);
+        if(courseChoiceMapper.insertSelective(courseChoice)>0){
+            FXHelper.showInfoDialog("选修成功!");
+        }else{
+            FXHelper.showInfoDialog("选修失败!");
+        }
+
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
+
+
+
+
+    /**
+     * 查询所有课程
+     */
+    @FXML void searchCourse(){
+        SqlSession sqlSession = DBAccess.getSqlSession();
+        CourseMapper courseMapper = sqlSession.getMapper(CourseMapper.class);
+        CourseExample courseExample = new CourseExample();
+        List<Course> courseList = courseMapper.selectByExample(courseExample);
+        if(courseList.size()==0){
+            FXHelper.showInfoDialog("没有匹配的信息!");
+        }
+        tableViewCourse.setItems(FXCollections.observableList(courseList));
+
+        sqlSession.close();
+    }
 
     /**
      * 归还已借阅图书
@@ -414,5 +460,12 @@ public class UserController implements Initializable{
         columnBorrowedBookID.setCellValueFactory(new PropertyValueFactory<>("bookId"));
         columnBorrowedTime.setCellValueFactory(new PropertyValueFactory<>("borrowtime"));
         columnBorrowedSBacktime.setCellValueFactory(new PropertyValueFactory<>("sBacktime"));
+
+        //课程查询相关
+        columnCourseID.setCellValueFactory(new PropertyValueFactory<>("courseId"));
+        columnCourseName.setCellValueFactory(new PropertyValueFactory<>("courseName"));
+        columnCourseStartDate.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+        columnCourseEndDate.setCellValueFactory(new PropertyValueFactory<>("endDate"));
+        colmnCourseOrganization.setCellValueFactory(new PropertyValueFactory<>("organizationId"));
     }
 }
