@@ -14,10 +14,7 @@ import utils.FXHelper;
 
 import java.math.BigDecimal;
 import java.net.URL;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 /**
  * Created by FXBL on 6/29/2017.
@@ -54,6 +51,89 @@ public class UserController implements Initializable{
     //课程查询选项卡相关
     @FXML private TableView<Course> tableViewCourse;
     @FXML private TableColumn<Course,String> columnCourseID,columnCourseName,columnCourseStartDate,columnCourseEndDate,colmnCourseOrganization;
+
+    //退课选项卡相关
+    @FXML private TableView<Course> tableViewReturnCourse;
+    @FXML private TableColumn<Course,String> columnReturnCourseID,columnReturnCourseName,columnReturnCourseStartDate,columnReturnCourseEndDate,colmnReturnCourseOrganization;
+
+    //成绩选项卡相关
+    @FXML private TableView<CourseChoice> tableViewCourseChoice;
+    @FXML private TableColumn<CourseChoice,String> columnUserID,columnUserGrade;
+
+
+    /**
+     * 查询成绩
+     */
+    @FXML
+    private void gradeSearch(){
+        SqlSession sqlSession = DBAccess.getSqlSession();
+        CourseChoiceMapper courseChoiceMapper = sqlSession.getMapper(CourseChoiceMapper.class);
+        CourseChoiceExample courseChoiceExample = new CourseChoiceExample();
+        courseChoiceExample.or().andUserIdEqualTo(CurrentUser.userID);
+        List<CourseChoice> courseChoiceList = courseChoiceMapper.selectByExample(courseChoiceExample);
+        if(courseChoiceList.size()==0){
+            FXHelper.showInfoDialog("抱歉,没有匹配的结果!");
+        }else{
+            tableViewCourseChoice.setItems(FXCollections.observableList(courseChoiceList));
+        }
+
+
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
+
+
+    /**
+     * 选中课程退课
+     */
+    @FXML void returnCourse(){
+        SqlSession sqlSession = DBAccess.getSqlSession();
+        Course course = tableViewCourse.getSelectionModel().getSelectedItem();
+        if(course==null){
+            FXHelper.showInfoDialog("还没选中任何课程,无法退课!");
+            return;
+        }
+        CourseChoiceMapper courseChoiceMapper = sqlSession.getMapper(CourseChoiceMapper.class);
+        CourseChoiceExample courseChoiceExample = new CourseChoiceExample();
+        courseChoiceExample.or().andUserIdEqualTo(CurrentUser.userID)
+                .andCourseIdEqualTo(course.getCourseId());
+        if(courseChoiceMapper.deleteByExample(courseChoiceExample)>0){
+            FXHelper.showInfoDialog("退课成功!");
+        }else{
+            FXHelper.showInfoDialog("退课失败!");
+        }
+
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
+
+    /**
+     * 查询选修的课程
+     */
+    @FXML void searchSelectedCourse(){
+        SqlSession sqlSession = DBAccess.getSqlSession();
+        CourseMapper courseMapper = sqlSession.getMapper(CourseMapper.class);
+        CourseChoiceMapper courseChoiceMapper = sqlSession.getMapper(CourseChoiceMapper.class);
+        CourseChoiceExample courseChoiceExample = new CourseChoiceExample();
+        courseChoiceExample.or().andUserIdEqualTo(CurrentUser.userID);
+        List<CourseChoice> courseChoiceList = courseChoiceMapper.selectByExample(courseChoiceExample);
+        List<Integer> courseIdList = new ArrayList<>();
+        for(CourseChoice courseChoice:courseChoiceList){
+            courseIdList.add(courseChoice.getCourseId());
+        }
+        CourseExample courseExample = new CourseExample();
+        courseExample.or().andCourseIdIn(courseIdList);
+        List<Course> courseList = courseMapper.selectByExample(courseExample);
+        if(courseList.size()==0){
+            FXHelper.showInfoDialog("没有匹配的信息!");
+        }
+        tableViewReturnCourse.setItems(FXCollections.observableList(courseList));
+
+        sqlSession.close();
+    }
+
 
 
     /**
@@ -467,5 +547,16 @@ public class UserController implements Initializable{
         columnCourseStartDate.setCellValueFactory(new PropertyValueFactory<>("startDate"));
         columnCourseEndDate.setCellValueFactory(new PropertyValueFactory<>("endDate"));
         colmnCourseOrganization.setCellValueFactory(new PropertyValueFactory<>("organizationId"));
+
+        //退课相关
+        columnReturnCourseID.setCellValueFactory(new PropertyValueFactory<>("courseId"));
+        columnReturnCourseName.setCellValueFactory(new PropertyValueFactory<>("courseName"));
+        columnReturnCourseStartDate.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+        columnReturnCourseEndDate.setCellValueFactory(new PropertyValueFactory<>("endDate"));
+        colmnReturnCourseOrganization.setCellValueFactory(new PropertyValueFactory<>("organizationId"));
+
+        //成绩查询相关
+        columnUserID.setCellValueFactory(new PropertyValueFactory<>("userId"));
+        columnUserGrade.setCellValueFactory(new PropertyValueFactory<>("grade"));
     }
 }
