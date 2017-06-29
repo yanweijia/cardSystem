@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/fxml/User.fxml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ui/controller/User/UserController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/entity/Course.java" afterPath="$PROJECT_DIR$/src/entity/Course.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/fxml/CourseAdmin.fxml" afterPath="$PROJECT_DIR$/src/resources/fxml/CourseAdmin.fxml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/test.java" afterPath="$PROJECT_DIR$/src/test/test.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ui/controller/CourseAdmin/CourseAdminController.java" afterPath="$PROJECT_DIR$/src/ui/controller/CourseAdmin/CourseAdminController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ui/controller/MainUI/MainUIController.java" afterPath="$PROJECT_DIR$/src/ui/controller/MainUI/MainUIController.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -157,11 +157,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="test.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/test.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
-              <caret line="23" column="60" lean-forward="false" selection-start-line="23" selection-start-column="54" selection-end-line="23" selection-end-column="60" />
+              <caret line="23" column="58" lean-forward="false" selection-start-line="23" selection-start-column="58" selection-end-line="23" selection-end-column="58" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User.fxml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/resources/fxml/User.fxml">
+          <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+            <state />
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="11" lean-forward="false" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -172,8 +185,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -219,7 +232,6 @@
         <option value="$PROJECT_DIR$/src/utils/JavaFXHelper.java" />
         <option value="$PROJECT_DIR$/src/resources/fxml/MainUI.fxml" />
         <option value="$PROJECT_DIR$/src/utils/FXHelper.java" />
-        <option value="$PROJECT_DIR$/src/ui/controller/MainUI/MainUIController.java" />
         <option value="$PROJECT_DIR$/src/ui/controller/ChangeUserInfoController.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/f8a6e596-1e3f-4533-933f-82a242e1d234/console.sql" />
         <option value="$PROJECT_DIR$/src/config/mybatis/sqlxml/BookInfoMapper.xml" />
@@ -242,7 +254,10 @@
         <option value="$PROJECT_DIR$/src/resources/fxml/ChangeUserInfo.fxml" />
         <option value="$PROJECT_DIR$/src/resources/fxml/CourseAdmin.fxml" />
         <option value="$PROJECT_DIR$/src/ui/controller/CourseAdmin/CourseAdminController.java" />
+        <option value="$PROJECT_DIR$/src/resources/fxml/Student.fxml" />
         <option value="$PROJECT_DIR$/src/test/test.java" />
+        <option value="$PROJECT_DIR$/src/resources/fxml/User.fxml" />
+        <option value="$PROJECT_DIR$/src/ui/controller/MainUI/MainUIController.java" />
       </list>
     </option>
   </component>
@@ -254,8 +269,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="417" />
-    <option name="width" value="1510" />
+    <option name="x" value="439" />
+    <option name="width" value="1488" />
     <option name="height" value="1057" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -548,65 +563,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="entity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="system" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="system" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dao" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="system" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="system" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="mybatis" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="system" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="system" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mybatis" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sqlxml" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1148,7 +1105,7 @@
       <workItem from="1497970648441" duration="31404000" />
       <workItem from="1498479733143" duration="39015000" />
       <workItem from="1498581966882" duration="29221000" />
-      <workItem from="1498708246496" duration="10924000" />
+      <workItem from="1498708246496" duration="11532000" />
     </task>
     <task id="LOCAL-00001" summary="first commit &amp;backup">
       <created>1497967830038</created>
@@ -1269,11 +1226,18 @@
       <option name="project" value="LOCAL" />
       <updated>1498674515919</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="教学系统管理员界面基本完成">
+      <created>1498722907674</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1498722907674</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="156168000" />
+    <option name="totallyTimeSpent" value="156776000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1285,7 +1249,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="417" y="0" width="1510" height="1057" extended-state="0" />
+    <frame x="439" y="0" width="1488" height="1057" extended-state="0" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1302,10 +1266,10 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14019337" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19424964" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13025557" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.111878455" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.113604486" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2497332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -1413,7 +1377,8 @@
     <MESSAGE value="bugfix:一卡通管理员代码完成!" />
     <MESSAGE value="宿舍管理员功能简单完成" />
     <MESSAGE value="教学系统管理员部分界面" />
-    <option name="LAST_COMMIT_MESSAGE" value="教学系统管理员部分界面" />
+    <MESSAGE value="教学系统管理员界面基本完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="教学系统管理员界面基本完成" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1426,46 +1391,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/utils/FXHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/config/mybatis/sqlxml/UserMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="33" lean-forward="true" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="33" />
-          <folding>
-            <marker date="1498483377114" expanded="true" signature="4100:4200" ph="select from user" />
-            <marker date="1498483377114" expanded="true" signature="4285:4339" ph="delete from " />
-            <marker date="1498483377114" expanded="true" signature="4423:4439" ph="delete from " />
-            <marker date="1498483377114" expanded="true" signature="4599:5062" ph="insert into user... " />
-            <marker date="1498483377114" expanded="true" signature="6963:6988" ph="select count... user" />
-            <marker date="1498483377114" expanded="true" signature="8502:9060" ph="update user " />
-            <marker date="1498483377114" expanded="true" signature="9251:10230" ph="update user " />
-            <marker date="1498483377114" expanded="true" signature="10310:10794" ph="update user " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dao/UserMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="7" column="16" lean-forward="false" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/db/DBAccess.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="39" column="44" lean-forward="false" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/dao/BookAccountMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -1839,7 +1764,7 @@
         <state relative-caret-position="480">
           <caret line="252" column="90" lean-forward="true" selection-start-line="252" selection-start-column="29" selection-end-line="252" selection-end-column="90" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
             <element signature="method#resetBookInfo#0;class#LibraryAdminController#0" expanded="false" />
             <element signature="method#addNewBookInfo#0;class#LibraryAdminController#0" expanded="false" />
             <element signature="method#deleteSelectedBook#0;class#LibraryAdminController#0" expanded="false" />
@@ -1861,7 +1786,7 @@
         <state relative-caret-position="-1696">
           <caret line="48" column="27" lean-forward="true" selection-start-line="48" selection-start-column="27" selection-end-line="48" selection-end-column="27" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1871,7 +1796,7 @@
         <state relative-caret-position="565">
           <caret line="322" column="27" lean-forward="true" selection-start-line="303" selection-start-column="8" selection-end-line="322" selection-end-column="27" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2031,6 +1956,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/controller/CourseAdmin/CourseAdminController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="40" column="26" lean-forward="true" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/fxml/Student.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="31" lean-forward="false" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="23" column="58" lean-forward="false" selection-start-line="23" selection-start-column="58" selection-end-line="23" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/controller/User/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="27" lean-forward="false" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/resources/fxml/CourseAdmin.fxml">
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
         <state />
@@ -2047,20 +2009,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/controller/CourseAdmin/CourseAdminController.java">
+    <entry file="file://$PROJECT_DIR$/src/ui/controller/MainUI/MainUIController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="40" column="26" lean-forward="true" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="442">
+          <caret line="103" column="71" lean-forward="false" selection-start-line="103" selection-start-column="71" selection-end-line="103" selection-end-column="71" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="23" column="60" lean-forward="false" selection-start-line="23" selection-start-column="54" selection-end-line="23" selection-end-column="60" />
+    <entry file="file://$PROJECT_DIR$/src/resources/fxml/User.fxml">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="11" lean-forward="false" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
           <folding />
         </state>
       </provider>

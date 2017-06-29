@@ -77,21 +77,31 @@ public class MainUIController  implements Initializable {
             return;
         }
         if("一卡通管理员".equals(user.getType())){
+            FXHelper.newStage(getClass(),"/resources/fxml/CardAdmin.fxml","一卡通管理员");
+            FXHelper.getStage().close();
             return;
         }
         if("学生".equals(user.getType())){
+            FXHelper.newStage(getClass(),"/resources/fxml/User.fxml","一卡通用户(学生)");
+            FXHelper.getStage().close();
             return;
         }
         if("教学系统管理员".equals(user.getType())){
+            FXHelper.newStage(getClass(),"/resources/fxml/CourseAdmin.fxml","教学系统管理员");
+            FXHelper.getStage().close();
             return;
         }
         if("图书管理员".equals(user.getType())){
+            FXHelper.newStage(getClass(),"/resources/fxml/LibraryAdmin.fxml","图书馆管理员");
+            FXHelper.getStage().close();
             return;
         }
         if("宿舍管理员".equals(user.getType())){
+            FXHelper.newStage(getClass(),"/resources/fxml/DormitoryAdmin.fxml","宿舍管理员");
+            FXHelper.getStage().close();
             return;
         }
-        AlertInfoDialog("信息","什么鬼","Opps,发生了未知意外!");
+        AlertInfoDialog("信息","什么鬼","Opps,发生了未知意外!你究竟是何方神圣?为什么我不知道你的用户类型!");
     }
 
 
