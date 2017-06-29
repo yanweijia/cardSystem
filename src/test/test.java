@@ -11,7 +11,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import utils.FXHelper;
 
-import javax.swing.*;
 
 /**
  * 这是本软件的主入口,要运行本软件请直接运行本类就可以了,不用传入任何参数

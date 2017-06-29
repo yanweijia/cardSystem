@@ -42,13 +42,13 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Button defaultButton="true" mnemonicParsing="false" text="刷新" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <Button fx:id="viewBalance" defaultButton="true" mnemonicParsing="false" text="刷新" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <font>
                                           <Font name="Microsoft YaHei Bold" size="19.0" />
                                        </font>
                                     </Button>
                                     <Label text="余额:" />
-                                    <TextField editable="false" promptText="余额" text="0.00" GridPane.columnIndex="1" />
+                                    <TextField fx:id="textFieldBalance" editable="false" promptText="余额" text="0.00" GridPane.columnIndex="1" />
                                  </children>
                               </GridPane>
                            </content></Tab>
@@ -65,18 +65,18 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <Button defaultButton="true" mnemonicParsing="false" text="查询消费" GridPane.columnIndex="1" />
-                                          <CheckBox mnemonicParsing="false" text="只查看今日消费" />
+                                          <Button defaultButton="true" mnemonicParsing="false" onAction="#viewConsume" text="查询消费" GridPane.columnIndex="1" />
+                                          <CheckBox fx:id="checkBoxConsumeToday" mnemonicParsing="false" text="只查看今日消费" />
                                        </children>
                                     </GridPane>
                                  </top>
                                  <center>
-                                    <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                    <TableView fx:id="tableViewConsume" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                       <columns>
-                                        <TableColumn prefWidth="75.0" text="用户编号" />
-                                        <TableColumn prefWidth="75.0" text="消费时间" />
-                                          <TableColumn prefWidth="75.0" text="消费金额" />
-                                          <TableColumn prefWidth="75.0" text="消费商品名称" />
+                                        <TableColumn fx:id="columnConsumeUserID" prefWidth="75.0" text="用户编号" />
+                                        <TableColumn fx:id="columnConsumeTime" prefWidth="75.0" text="消费时间" />
+                                          <TableColumn fx:id="columeConsumeMoney" prefWidth="75.0" text="消费金额" />
+                                          <TableColumn fx:id="columnConsumeGoodsName" prefWidth="75.0" text="消费商品名称" />
                                       </columns>
                                        <columnResizePolicy>
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -102,10 +102,10 @@
                                     <Label text="充值时间:" />
                                     <Label text="充值金额:" GridPane.rowIndex="1" />
                                     <Label text="银行卡号" GridPane.rowIndex="2" />
-                                    <Button defaultButton="true" mnemonicParsing="false" text="刷新" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <TextField editable="false" promptText="充值时间" GridPane.columnIndex="1" />
-                                    <TextField editable="false" promptText="充值金额" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <TextField editable="false" promptText="充值所用的银行卡号" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Button defaultButton="true" mnemonicParsing="false" onAction="#viewTopup" text="刷新" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="textFieldTopupDate" editable="false" promptText="充值时间" GridPane.columnIndex="1" />
+                                    <TextField fx:id="textFieldTopupMoney" editable="false" promptText="充值金额" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="textFieldTopupCard" editable="false" promptText="充值所用的银行卡号" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                  </children>
                               </GridPane>
                            </content></Tab>
@@ -135,9 +135,9 @@
                      <children>
                         <Label text="商品名称:" />
                         <Label text="金额" GridPane.rowIndex="1" />
-                        <TextField promptText="请输入商品名称" GridPane.columnIndex="1" />
-                        <TextField promptText="请输入消费金额" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Button defaultButton="true" mnemonicParsing="false" text="确定消费" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="textFieldConsumeGoodsName" promptText="请输入商品名称" GridPane.columnIndex="1" />
+                        <TextField fx:id="textFieldConsumeMoney" promptText="请输入消费金额" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button defaultButton="true" mnemonicParsing="false" onAction="#consume" text="确定消费" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                </content></Tab>
@@ -155,10 +155,10 @@
                     </rowConstraints>
                      <children>
                         <Label text="银行卡号:" />
-                        <TextField promptText="请输入银行卡号" GridPane.columnIndex="1" />
+                        <TextField fx:id="textFieldTopup_card" promptText="请输入银行卡号" GridPane.columnIndex="1" />
                         <Label text="金额:" GridPane.rowIndex="1" />
-                        <TextField promptText="请输入充值金额" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Button defaultButton="true" mnemonicParsing="false" text="确认充值" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="textFieldTopup_money" promptText="请输入充值金额" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button defaultButton="true" mnemonicParsing="false" onAction="#topup" text="确认充值" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                </content></Tab>

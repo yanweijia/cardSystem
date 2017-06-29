@@ -303,7 +303,7 @@ public class SystemAdminController implements Initializable {
             textFieldUpdateUserID.requestFocus();
             return;
         }
-        if(!"".equals(userName)){
+        if("".equals(userName)){
             FXHelper.showWarningDialog("请输入用户姓名!");
             textFieldUpdateUserName.requestFocus();
             return;
@@ -337,6 +337,7 @@ public class SystemAdminController implements Initializable {
         }
 
         sqlSession.getMapper(UserMapper.class).updateByPrimaryKey(user);
+        FXHelper.showInfoDialog("修改成功!");
         sqlSession.commit();
         sqlSession.close();
     }
