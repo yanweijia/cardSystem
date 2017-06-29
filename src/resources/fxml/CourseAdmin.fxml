@@ -39,7 +39,7 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Button defaultButton="true" mnemonicParsing="false" text="删除选中课程" GridPane.columnIndex="1" />
+                              <Button defaultButton="true" mnemonicParsing="false" onAction="#deleteSelectedCourse" text="删除选中课程" GridPane.columnIndex="1" />
                            </children>
                         </GridPane>
                      </bottom>

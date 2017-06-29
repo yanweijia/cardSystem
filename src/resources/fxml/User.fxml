@@ -312,13 +312,13 @@
                                     </GridPane>
                                  </top>
                                  <center>
-                                    <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                    <TableView fx:id="tableViewCourse" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                       <columns>
-                                        <TableColumn prefWidth="75.0" text="课程编号" />
-                                        <TableColumn prefWidth="75.0" text="课程名称" />
-                                          <TableColumn prefWidth="75.0" text="开始时间" />
-                                          <TableColumn prefWidth="75.0" text="结束时间" />
-                                          <TableColumn prefWidth="75.0" text="所属部门" />
+                                        <TableColumn fx:id="columnCourseID" prefWidth="75.0" text="课程编号" />
+                                        <TableColumn fx:id="columnCourseName" prefWidth="75.0" text="课程名称" />
+                                          <TableColumn fx:id="columnCourseStartDate" prefWidth="75.0" text="开始时间" />
+                                          <TableColumn fx:id="columnCourseEndDate" prefWidth="75.0" text="结束时间" />
+                                          <TableColumn fx:id="colmnCourseOrganization" prefWidth="75.0" text="所属部门" />
                                       </columns>
                                        <columnResizePolicy>
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

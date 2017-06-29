@@ -44,6 +44,28 @@ public class CourseAdminController implements Initializable{
 
 
     /**
+     * 删除选中课程
+     */
+    @FXML
+    private void deleteSelectedCourse(){
+        SqlSession sqlSession = DBAccess.getSqlSession();
+        CourseMapper courseMapper = sqlSession.getMapper(CourseMapper.class);
+        Course course = tableViewCourse.getSelectionModel().getSelectedItem();
+        if(course==null){
+            FXHelper.showInfoDialog("还没选中任何课程,无法删除!");
+            return;
+        }
+        if(courseMapper.deleteByPrimaryKey(course.getCourseId())>0){
+            FXHelper.showInfoDialog("删除成功!");
+        }else{
+            FXHelper.showInfoDialog("删除失败!");
+        }
+
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
+    /**
      * 确定录入成绩
      */
     @FXML
