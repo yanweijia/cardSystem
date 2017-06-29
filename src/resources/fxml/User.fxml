@@ -439,7 +439,7 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <Button defaultButton="true" mnemonicParsing="false" text="刷新宿舍情况" GridPane.columnIndex="1" />
+                                          <Button defaultButton="true" mnemonicParsing="false" onAction="#btnQueryDormitory" text="刷新宿舍情况" GridPane.columnIndex="1" />
                                        </children>
                                     </GridPane>
                                  </top>
@@ -453,17 +453,17 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <Button defaultButton="true" mnemonicParsing="false" text="申请选中宿舍" GridPane.columnIndex="1" />
+                                          <Button defaultButton="true" mnemonicParsing="false" onAction="#applyDormitory" text="申请选中宿舍" GridPane.columnIndex="1" />
                                        </children>
                                     </GridPane>
                                  </bottom>
                                  <center>
-                                    <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                    <TableView fx:id="tableViewDormitory" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                       <columns>
-                                        <TableColumn prefWidth="75.0" text="楼号" />
-                                        <TableColumn prefWidth="75.0" text="宿舍号" />
-                                          <TableColumn prefWidth="75.0" text="可住人数" />
-                                          <TableColumn prefWidth="75.0" text="已住人数" />
+                                        <TableColumn fx:id="columnDormitoryBuildingNo" prefWidth="75.0" text="楼号" />
+                                        <TableColumn fx:id="columnDormitoryNo" prefWidth="75.0" text="宿舍号" />
+                                          <TableColumn fx:id="columnDormitoryMaxNum" prefWidth="75.0" text="可住人数" />
+                                          <TableColumn fx:id="columnDormitoryNowNum" prefWidth="75.0" text="已住人数" />
                                       </columns>
                                        <columnResizePolicy>
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -488,11 +488,11 @@
                                  <children>
                                     <Label text="楼号:" />
                                     <Label text="宿舍号:" GridPane.rowIndex="1" />
-                                    <TextField editable="false" GridPane.columnIndex="1" />
-                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Button defaultButton="true" mnemonicParsing="false" text="刷新" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="textFieldDormitoryBuildingNo" editable="false" GridPane.columnIndex="1" />
+                                    <TextField fx:id="textFieldDormitoryNo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Button defaultButton="true" mnemonicParsing="false" onAction="#refreshMyDormitory" text="刷新" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                     <Label text="床号:" GridPane.rowIndex="2" />
-                                    <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField fx:id="textFieldDormitoryBedNo" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                  </children>
                               </GridPane>
                            </content></Tab>

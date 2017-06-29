@@ -61,6 +61,82 @@ public class UserController implements Initializable{
     @FXML private TableColumn<CourseChoice,String> columnUserID,columnUserGrade;
 
 
+    //宿舍申请选项卡相关
+    @FXML private TableView<Dormitory> tableViewDormitory;
+    @FXML private TableColumn<Dormitory,String> columnDormitoryBuildingNo,columnDormitoryNo,columnDormitoryMaxNum,columnDormitoryNowNum;
+
+
+    //刷新自己宿舍情况
+    @FXML private TextField textFieldDormitoryBuildingNo,textFieldDormitoryNo,textFieldDormitoryBedNo;
+
+
+    /**
+     * 刷新我的宿舍情况
+     */
+    @FXML
+    private void refreshMyDormitory(){
+        String buildingNo,dormitoryNo,bedNo;
+        SqlSession sqlSession = DBAccess.getSqlSession();
+        DormitoryUserMapper dormitoryUserMapper = sqlSession.getMapper(DormitoryUserMapper.class);
+        DormitoryUserExample example = new DormitoryUserExample();
+        example.or().andUser_idEqualTo(CurrentUser.userID);
+        List<DormitoryUser> list = dormitoryUserMapper.selectByExample(example);
+        if(list.size()==0){
+            buildingNo="没有住宿信息,是否未通过审核?";
+            dormitoryNo="没有住宿信息,是否未通过审核?";
+            bedNo="没有住宿信息,是否未通过审核?";
+        }else{
+            DormitoryUser dormitoryUser = list.get(0);
+            buildingNo=dormitoryUser.getBuilding_no();
+            dormitoryNo=dormitoryUser.getDormitory_no();
+            bedNo=dormitoryUser.getBed_no();
+        }
+        textFieldDormitoryBuildingNo.setText(buildingNo);
+        textFieldDormitoryNo.setText(dormitoryNo);
+        textFieldDormitoryBedNo.setText(bedNo);
+        sqlSession.close();
+    }
+
+
+    /**
+     * 申请住宿
+     */
+    @FXML
+    private void applyDormitory(){
+        Dormitory dormitory = tableViewDormitory.getSelectionModel().getSelectedItem();
+        if(dormitory==null){
+            FXHelper.showWarningDialog("未选中任何宿舍,无法申请!");
+            return;
+        }
+        SqlSession sqlSession = DBAccess.getSqlSession();
+        DormitoryApplyMapper dormitoryApplyMapper = sqlSession.getMapper(DormitoryApplyMapper.class);
+        DormitoryApply dormitoryApply = new DormitoryApply(null,CurrentUser.userID, false, dormitory.getBuildingNo(),dormitory.getDormitoryNo(), new Date(), false);
+        if(dormitoryApplyMapper.insertSelective(dormitoryApply)!=0){
+            FXHelper.showInfoDialog("申请成功!");
+        }else{
+            FXHelper.showInfoDialog("申请失败!");
+        }
+
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
+    /**
+     * 刷新宿舍情况
+     */
+    @FXML
+    private void  btnQueryDormitory(){
+        SqlSession sqlSession = DBAccess.getSqlSession();
+        DormitoryMapper dormitoryMapper = sqlSession.getMapper(DormitoryMapper.class);
+        List<Dormitory> dormitoryList = dormitoryMapper.selectByExample(new DormitoryExample());
+        if(dormitoryList.size()==0){
+            FXHelper.showInfoDialog("没有查询到任何宿舍信息");
+        }
+        tableViewDormitory.setItems(FXCollections.observableList(dormitoryList));
+        sqlSession.close();
+    }
+
+
     /**
      * 查询成绩
      */
@@ -558,5 +634,11 @@ public class UserController implements Initializable{
         //成绩查询相关
         columnUserID.setCellValueFactory(new PropertyValueFactory<>("userId"));
         columnUserGrade.setCellValueFactory(new PropertyValueFactory<>("grade"));
+
+        //住宿申请相关
+        columnDormitoryBuildingNo.setCellValueFactory(new PropertyValueFactory<>("buildingNo"));
+        columnDormitoryNo.setCellValueFactory(new PropertyValueFactory<>("dormitoryNo"));
+        columnDormitoryMaxNum.setCellValueFactory(new PropertyValueFactory<>("maxNum"));
+        columnDormitoryNowNum.setCellValueFactory(new PropertyValueFactory<>("nowNum"));
     }
 }

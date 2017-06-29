@@ -42,6 +42,19 @@ public class DormitoryApply implements Serializable {
      */
     private Boolean result;
 
+    public DormitoryApply() {
+    }
+
+    public DormitoryApply(Integer applyId, String userId, Boolean radnom, String buildingNo, String dormitoryNo, Date applyTime, Boolean result) {
+        this.applyId = applyId;
+        this.userId = userId;
+        this.radnom = radnom;
+        this.buildingNo = buildingNo;
+        this.dormitoryNo = dormitoryNo;
+        this.applyTime = applyTime;
+        this.result = result;
+    }
+
     private static final long serialVersionUID = 1L;
 
     public Integer getApplyId() {

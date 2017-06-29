@@ -16,6 +16,29 @@ public class Dormitory extends DormitoryKey implements Serializable {
      */
     private Short nowNum;
 
+    private String buildingNo;
+    private String dormitoryNo;
+
+    @Override
+    public String getBuildingNo() {
+        return buildingNo;
+    }
+
+    @Override
+    public void setBuildingNo(String buildingNo) {
+        this.buildingNo = buildingNo;
+    }
+
+    @Override
+    public String getDormitoryNo() {
+        return dormitoryNo;
+    }
+
+    @Override
+    public void setDormitoryNo(String dormitoryNo) {
+        this.dormitoryNo = dormitoryNo;
+    }
+
     private static final long serialVersionUID = 1L;
 
     public Short getMaxNum() {
