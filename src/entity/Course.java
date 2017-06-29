@@ -27,6 +27,17 @@ public class Course implements Serializable {
      */
     private Date endDate;
 
+    public Course() {
+    }
+
+    public Course(Integer courseId, String courseName, Date startDate, Date endDate, Integer organizationId) {
+        this.courseId = courseId;
+        this.courseName = courseName;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.organizationId = organizationId;
+    }
+
     /**
      * 所属部门/学院编号
      */
