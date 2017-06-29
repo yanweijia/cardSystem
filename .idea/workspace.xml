@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/entity/BookBorrow.java" afterPath="$PROJECT_DIR$/src/entity/BookBorrow.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/fxml/User.fxml" afterPath="$PROJECT_DIR$/src/resources/fxml/User.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ui/controller/User/UserController.java" afterPath="$PROJECT_DIR$/src/ui/controller/User/UserController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ui/controller/CourseAdmin/CourseAdminController.java" afterPath="$PROJECT_DIR$/src/ui/controller/CourseAdmin/CourseAdminController.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -290,6 +288,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="CourseAdminController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ui/controller/CourseAdmin/CourseAdminController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="131" column="57" lean-forward="true" selection-start-line="131" selection-start-column="57" selection-end-line="131" selection-end-column="57" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="test.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/test.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -302,41 +312,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ui/controller/User/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="58" column="38" lean-forward="true" selection-start-line="58" selection-start-column="38" selection-end-line="58" selection-end-column="38" />
+            <state relative-caret-position="177">
+              <caret line="55" column="14" lean-forward="true" selection-start-line="55" selection-start-column="14" selection-end-line="55" selection-end-column="14" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LibraryAdminController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ui/controller/LibraryAdmin/LibraryAdminController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="455">
-              <caret line="83" column="27" lean-forward="true" selection-start-line="52" selection-start-column="8" selection-end-line="83" selection-end-column="27" />
-              <folding>
-                <element signature="method#resetBookInfo#0;class#LibraryAdminController#0" expanded="false" />
-                <element signature="method#addNewBookInfo#0;class#LibraryAdminController#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LibraryAdmin.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/resources/fxml/LibraryAdmin.fxml">
-          <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-            <state />
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="83" column="25" lean-forward="true" selection-start-line="28" selection-start-column="15" selection-end-line="83" selection-end-column="25" />
-              <folding>
-                <marker date="1498586046484" expanded="true" signature="2832:2868" ph="..." />
               </folding>
             </state>
           </provider>
@@ -419,7 +401,6 @@
         <option value="$PROJECT_DIR$/src/resources/fxml/CourseAdmin.fxml" />
         <option value="$PROJECT_DIR$/src/resources/fxml/Student.fxml" />
         <option value="$PROJECT_DIR$/src/ui/controller/MainUI/MainUIController.java" />
-        <option value="$PROJECT_DIR$/src/ui/controller/CourseAdmin/CourseAdminController.java" />
         <option value="$PROJECT_DIR$/src/test/test.java" />
         <option value="$PROJECT_DIR$/src/ui/controller/SystemAdmin/SystemAdminController.java" />
         <option value="$PROJECT_DIR$/src/resources/fxml/CardAdmin.fxml" />
@@ -427,6 +408,7 @@
         <option value="$PROJECT_DIR$/src/entity/BookBorrow.java" />
         <option value="$PROJECT_DIR$/src/resources/fxml/User.fxml" />
         <option value="$PROJECT_DIR$/src/ui/controller/User/UserController.java" />
+        <option value="$PROJECT_DIR$/src/ui/controller/CourseAdmin/CourseAdminController.java" />
       </list>
     </option>
   </component>
@@ -598,6 +580,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="LibraryAdmin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="system" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="system" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CourseAdmin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -796,7 +804,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.test">
+  <component name="RunManager" selected="Application.MainUI">
     <configuration default="false" name="MainUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -1254,8 +1262,8 @@
     </list>
     <recent_temporary>
       <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Application.test" />
-        <item index="1" class="java.lang.String" itemvalue="Application.MainUI" />
+        <item index="0" class="java.lang.String" itemvalue="Application.MainUI" />
+        <item index="1" class="java.lang.String" itemvalue="Application.test" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -1281,7 +1289,7 @@
       <workItem from="1497970648441" duration="31404000" />
       <workItem from="1498479733143" duration="39015000" />
       <workItem from="1498581966882" duration="29221000" />
-      <workItem from="1498708246496" duration="29457000" />
+      <workItem from="1498708246496" duration="30640000" />
     </task>
     <task id="LOCAL-00001" summary="first commit &amp;backup">
       <created>1497967830038</created>
@@ -1444,11 +1452,18 @@
       <option name="project" value="LOCAL" />
       <updated>1498754350177</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="一卡通用户图书管系统完成">
+      <created>1498756201010</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1498756201010</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="174701000" />
+    <option name="totallyTimeSpent" value="175884000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1594,7 +1609,8 @@
     <MESSAGE value="校园一卡通系统部分代码 &amp; SystemAdminController部分bug修改" />
     <MESSAGE value="miniBugFix(系统管理员-模糊查询Section小bug) &amp; 学生系统还剩教学和宿舍两个模块" />
     <MESSAGE value="解决了一卡通管理员无法开卡的bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="解决了一卡通管理员无法开卡的bug" />
+    <MESSAGE value="一卡通用户图书管系统完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="一卡通用户图书管系统完成" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1607,23 +1623,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/config/mybatis/sqlxml/BookInfoMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="16" column="14" lean-forward="true" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
-          <folding>
-            <marker date="1498369906125" expanded="true" signature="4230:4344" ph="select from book_info" />
-            <marker date="1498369906125" expanded="true" signature="4430:4498" ph="delete from " />
-            <marker date="1498369906125" expanded="true" signature="4586:4607" ph="delete from " />
-            <marker date="1498369906125" expanded="true" signature="4771:5311" ph="insert into book_info... " />
-            <marker date="1498369906125" expanded="true" signature="7407:7437" ph="select count... book_info" />
-            <marker date="1498369906125" expanded="true" signature="9091:9726" ph="update book_... " />
-            <marker date="1498369906125" expanded="true" signature="9921:11022" ph="update book_... " />
-            <marker date="1498369906125" expanded="true" signature="11106:11660" ph="update book_... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/dao/BookInfoMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -1998,16 +1997,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/controller/CourseAdmin/CourseAdminController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/entity/Consume.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
@@ -2281,8 +2270,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ui/controller/User/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="58" column="38" lean-forward="true" selection-start-line="58" selection-start-column="38" selection-end-line="58" selection-end-column="38" />
+        <state relative-caret-position="177">
+          <caret line="55" column="14" lean-forward="true" selection-start-line="55" selection-start-column="14" selection-end-line="55" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/javafx-src.zip!/javafx/scene/control/ComboBoxBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="150" column="19" lean-forward="false" selection-start-line="150" selection-start-column="19" selection-end-line="150" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/controller/CourseAdmin/CourseAdminController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="131" column="57" lean-forward="true" selection-start-line="131" selection-start-column="57" selection-end-line="131" selection-end-column="57" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

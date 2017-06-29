@@ -16,6 +16,7 @@ import utils.FXHelper;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -123,8 +124,9 @@ public class CourseAdminController implements Initializable{
             datePickerEndDate.requestFocus();
             return;
         }
-        Date courseStartDate = new SimpleDateFormat("MM/dd/yyyy").parse(datePickerStartDate.getEditor().getText());
-        Date courseEndDate = new SimpleDateFormat("MM/dd/yyyy").parse(datePickerEndDate.getEditor().getText());
+
+        Date courseStartDate = new SimpleDateFormat("yyyy-MM-dd").parse(((LocalDate)(datePickerStartDate.getValue())).toString());
+        Date courseEndDate = new SimpleDateFormat("yyyy-MM-dd").parse(((LocalDate)(datePickerEndDate.getValue())).toString());
 
 
         SqlSession sqlSession = DBAccess.getSqlSession();
