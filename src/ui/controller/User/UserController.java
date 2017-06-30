@@ -348,12 +348,6 @@ public class UserController implements Initializable{
 
 
 
-            bookInfoMapper.deleteByPrimaryKey(bookInfo.getBookId());
-
-
-
-
-
             FXHelper.showInfoDialog("借阅成功!");
             sqlSession.commit();
             sqlSession.close();
@@ -448,10 +442,10 @@ public class UserController implements Initializable{
             }else{
                 return;
             }
-            BookAccount bookAccount = bookAccountMapper.selectByPrimaryKey(CurrentUser.userID);
-            if(bookAccount!=null){
-                FXHelper.showInfoDialog("最大借阅数:"+bookAccount.getMaxBorrowNum()+"\n已借阅数:"+bookAccount.getBorrowedNum()+"\n注册日期:"+bookAccount.getRegisterDate());
-            }
+        }
+        BookAccount bookAccount = bookAccountMapper.selectByPrimaryKey(CurrentUser.userID);
+        if(bookAccount!=null){
+            FXHelper.showInfoDialog("最大借阅数:"+bookAccount.getMaxBorrowNum()+"\n已借阅数:"+bookAccount.getBorrowedNum()+"\n注册日期:"+bookAccount.getRegisterDate());
         }
         sqlSession.commit();
         sqlSession.close();
